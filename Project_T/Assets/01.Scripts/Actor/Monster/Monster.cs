@@ -23,7 +23,6 @@ public class Monster
     public IEnumerator CreatedRoutine()
     {
         yield return new WaitForSeconds(1.0f);
-        FindAttackTarget();
         controller.ChangeState(Define.MonsterState.Idle);
     }
 

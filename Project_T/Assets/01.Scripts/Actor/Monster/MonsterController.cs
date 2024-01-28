@@ -35,6 +35,8 @@ public class MonsterController : Actor
 
         init = true;
         isDead = false;
+
+        status.defaultSpeed = 3;
     }
 
 

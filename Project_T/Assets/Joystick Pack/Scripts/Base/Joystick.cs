@@ -9,6 +9,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     public float Vertical { get { return (snapY) ? SnapFloat(input.y, AxisOptions.Vertical) : input.y; } }
     public Vector2 Direction { get { return new Vector2(Horizontal, Vertical); } }
 
+    private Vector2 firstPos;
+
     public float HandleRange
     {
         get { return handleRange; }
@@ -55,6 +57,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.anchorMax = center;
         handle.pivot = center;
         handle.anchoredPosition = Vector2.zero;
+        firstPos = background.position;
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
@@ -134,6 +137,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         input = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
+        Managers.Input.InputJoystick(Direction);
+        background.position = firstPos;
     }
 
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)

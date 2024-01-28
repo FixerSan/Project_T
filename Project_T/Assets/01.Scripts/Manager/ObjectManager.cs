@@ -38,9 +38,9 @@ public class ObjectManager
 
     public List<MonsterController> monsters = new List<MonsterController>();
 
-    public PlayerController SpawnPlayer(int _playerCharacterIndex, Vector3 _playerPos)
+    public PlayerController SpawnPlayer(Vector3 _playerPos)
     {
-        playerController = Managers.Resource.Instantiate($"PlayerCharacter_{_playerCharacterIndex}").GetOrAddComponent<PlayerController>();
+        playerController = Managers.Resource.Instantiate($"Player").GetOrAddComponent<PlayerController>();
         Player player = new Player(new PlayerData(), playerController);
         Dictionary<Define.PlayerState, State<PlayerController>> states = new Dictionary<Define.PlayerState, State<PlayerController>>();
         states.Add(Define.PlayerState.Idle, new PlayerStates.Idle());
@@ -59,7 +59,7 @@ public class ObjectManager
 
     public MonsterController SpawnMonster(int _monsterIndex, Vector3 _monsterPos)
     {
-        MonsterController controller = Managers.Resource.Instantiate($"Monster_{_monsterIndex}").GetOrAddComponent<MonsterController>();
+        MonsterController controller = Managers.Resource.Instantiate($"Monster_{_monsterIndex}", _pooling:true).GetOrAddComponent<MonsterController>();
         BaseMonster monster = null;
         Dictionary<Define.MonsterState, State<MonsterController>> states = new Dictionary<Define.MonsterState, State<MonsterController>>();
 
@@ -89,6 +89,7 @@ public class ObjectManager
         }
         controller.SetPosition(_monsterPos);
         controller.Init(monster, states,new Status());
+        controller.monster.attackTarget = playerController;
         monsters.Add(controller);
 
         return controller;

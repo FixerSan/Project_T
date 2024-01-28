@@ -1,9 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static Define;
 
-public class SceneManager 
+public class SceneManager
 {
     private Transform sceneTrans;
     public Transform SceneTrans
@@ -27,7 +25,7 @@ public class SceneManager
 
     public void LoadScene(Define.Scene _scene, bool _isHasFade = true, Action _loadCallback = null)
     {
-        if(!_isHasFade)
+        if (!_isHasFade)
         {
             if (isLoading) return;
             isLoading = true;
@@ -42,14 +40,14 @@ public class SceneManager
                 AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync($"Scene_{sceneName}");
                 async.completed += (_) =>
                 {
-                    AddScene(sceneName, ()=> { loadCallback?.Invoke(); });
+                    AddScene(sceneName, () => { loadCallback?.Invoke(); });
                     isLoading = false;
                 };
             });
             return;
         }
 
-        Managers.Screen.FadeIn(0.25f, () => 
+        Managers.Screen.FadeIn(0.25f, () =>
         {
             if (isLoading) return;
             isLoading = true;
@@ -64,8 +62,11 @@ public class SceneManager
                 AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync($"Scene_{sceneName}");
                 async.completed += (_) =>
                 {
-                    AddScene(sceneName,()=> { isLoading = false; loadCallback?.Invoke(); 
-                        Managers.Screen.FadeOut(0.25f); });
+                    AddScene(sceneName, () =>
+                    {
+                        isLoading = false; loadCallback?.Invoke();
+                        Managers.Screen.FadeOut(0.25f);
+                    });
                 };
             });
         });
@@ -76,17 +77,6 @@ public class SceneManager
         BaseScene bs = null;
         switch (_scene)
         {
-            //case Define.Scene.Login:
-            //    bs = SceneTrans.GetComponent<LoginScene>();
-            //    break;
-
-            //case Define.Scene.Main:
-            //    bs = SceneTrans.GetComponent<MainScene>();
-            //    break;
-
-            //case Define.Scene.Stage:
-            //    bs = SceneTrans.GetComponent<StageScene>();
-            //    break;
             case Define.Scene.Test:
                 bs = sceneTrans.GetComponent<TestScene>();
                 break;
@@ -96,7 +86,7 @@ public class SceneManager
                 return;
         }
 
-        if(bs != null)
+        if (bs != null)
         {
             bs.Clear();
             UnityEngine.Object.Destroy(bs);
@@ -112,14 +102,6 @@ public class SceneManager
         //Managers.Data.LoadSceneData(addScene);
         switch (addScene)
         {
-            //case Define.Scene.Login:
-            //    bs = SceneTrans.gameObject.AddComponent<LoginScene>();
-            //    break;
-
-            //case Define.Scene.Main:
-            //    bs = SceneTrans.gameObject.AddComponent<MainScene>();
-            //    break;
-
             //case Define.Scene.Stage:
             //    bs = SceneTrans.gameObject.AddComponent<StageScene>();
             //    break;
@@ -139,7 +121,7 @@ public class SceneManager
         });
     }
 
-    public T GetActiveScene<T>()where T : BaseScene
+    public T GetActiveScene<T>() where T : BaseScene
     {
         return SceneTrans.GetComponent<T>() as T;
     }

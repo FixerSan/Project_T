@@ -22,6 +22,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
+  - m_GUID: 17eca2ed53ee8e74aad982c3c09d4d3c
+    m_Address: Player.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: 5f7634b910f39e641ae522983db1a0cf
+    m_Address: PlayerMovePos.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: b3562966064935d4ea109382e09058fc
+    m_Address: Main Camera.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: 61c86253d77da514198943c33a6b98c6
+    m_Address: Monster_0.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3909b773da7e7b34fa5db52770212107, type: 2}
   m_SchemaSet:
