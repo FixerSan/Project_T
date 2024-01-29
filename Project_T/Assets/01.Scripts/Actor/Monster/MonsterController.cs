@@ -1,6 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MonsterController : Actor
 {
@@ -16,6 +18,10 @@ public class MonsterController : Actor
 
     private bool init = false;
     public bool isDead = false;
+
+    public Collider2D coll;
+
+
     public void Init(Monster _monster, Dictionary<Define.MonsterState, State<MonsterController>> _states, Status _status)
     {
         monster = _monster;
@@ -24,6 +30,8 @@ public class MonsterController : Actor
 
         fsm = new StateMachine<MonsterController>(this, states[Define.MonsterState.Create]);
         rb = gameObject.GetOrAddComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
+        anim = Util.FindChild<Animator>(gameObject, "Sprite", true);
 
         animationHashs.Clear();
         animationHashs.Add(Define.MonsterState.Idle, Animator.StringToHash("0_idle"));
@@ -31,12 +39,12 @@ public class MonsterController : Actor
         animationHashs.Add(Define.MonsterState.Follow, Animator.StringToHash("1_Run"));
         animationHashs.Add(Define.MonsterState.Attack, Animator.StringToHash("2_Attack_Normal"));
         animationHashs.Add(Define.MonsterState.Die, Animator.StringToHash("4_Death"));
-        anim = Util.FindChild<Animator>(gameObject, "Sprite", true);
 
         init = true;
         isDead = false;
 
         status.defaultSpeed = 3;
+        coll.enabled = true;
     }
 
 

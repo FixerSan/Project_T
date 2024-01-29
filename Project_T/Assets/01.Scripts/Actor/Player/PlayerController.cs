@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using JetBrains.Annotations;
 
 public class PlayerController : Actor
 {
@@ -8,6 +10,8 @@ public class PlayerController : Actor
     private Dictionary<Define.PlayerState, State<PlayerController>> states;
     public Dictionary<Define.PlayerState, int> animationHashs = new Dictionary<Define.PlayerState, int>();
 
+    public Dictionary<Define.Attacks, BaseAttack> attacks = new Dictionary<Define.Attacks, BaseAttack>();
+
     public Define.PlayerState currentState;
     public Define.PlayerState changeState;
     public Rigidbody2D rb;
@@ -15,6 +19,8 @@ public class PlayerController : Actor
 
     public bool isDead = false;
     private bool init = false;
+
+    public Transform attackTrans;
 
     public void Init(Player _player, Dictionary<Define.PlayerState, State<PlayerController>> _states, Status _status)
     {
@@ -32,12 +38,15 @@ public class PlayerController : Actor
         animationHashs.Add(Define.PlayerState.Die, Animator.StringToHash("4_Death")); 
 
         anim = Util.FindChild<Animator>(gameObject, "Sprite", true);
+        attackTrans = Util.FindChild<Transform>(gameObject, "AttackTrans", true);
 
         isDead = false;
         init = true;
 
-        player.FindAttackTargetLoop();
         status.currentNowHP = 10000;
+        status.defaultAttackForce = 100;
+
+        Managers.Game.stage.GetAttack(Define.Attacks.Hammer);
     }
 
     public void Update()
@@ -77,5 +86,14 @@ public class PlayerController : Actor
     public override void GetDamage(float _damage)
     {
         status.currentNowHP -= _damage;
+    }
+
+    public void AddAttack(Define.Attacks _attack,int _level, Action<BaseAttack> _callback)
+    {
+        BaseAttack attack = Managers.Resource.Instantiate($"{_attack}_{_level}").GetComponent<BaseAttack>();
+        attack.transform.SetParent(attackTrans);
+        attack.transform.localPosition = Vector3.zero;
+        attack.Init(this);
+        _callback.Invoke(attack);
     }
 }

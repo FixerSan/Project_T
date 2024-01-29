@@ -17,6 +17,7 @@ public class TestScene : BaseScene
 
     private void FixedUpdate()
     {
+        if (Managers.Object.monsters.Count >= 10) return;
         pos.x = UnityEngine.Random.Range(-10, 10);
         pos.y = UnityEngine.Random.Range(-10, 10);
         pos = pos.normalized;

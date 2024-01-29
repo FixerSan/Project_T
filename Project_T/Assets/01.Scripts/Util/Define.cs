@@ -26,6 +26,11 @@ public class Define
         Create, Stay, Idle, Move, Follow, Attack, SkillCast, Die, EndBattle
     }
 
+    public enum Attacks
+    {
+        Hammer
+    }
+
 
     public enum VoidEventType
     {

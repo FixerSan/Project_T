@@ -45,9 +45,6 @@ public class ObjectManager
         Dictionary<Define.PlayerState, State<PlayerController>> states = new Dictionary<Define.PlayerState, State<PlayerController>>();
         states.Add(Define.PlayerState.Idle, new PlayerStates.Idle());
         states.Add(Define.PlayerState.Move, new PlayerStates.Move());
-        states.Add(Define.PlayerState.Follow, new PlayerStates.Follow());
-        states.Add(Define.PlayerState.Attack, new PlayerStates.Attack());
-        states.Add(Define.PlayerState.SkillCast, new PlayerStates.SkillCast());
         states.Add(Define.PlayerState.Die, new PlayerStates.Die());
         playerController.SetPosition(_playerPos);
         playerController.Init(player, states, new Status());

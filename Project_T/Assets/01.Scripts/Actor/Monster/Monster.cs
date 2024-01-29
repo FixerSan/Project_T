@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -143,6 +144,8 @@ public class Monster
     public virtual IEnumerator DieRoutine()
     {
         yield return new WaitForSeconds(2);
+        controller.coll.enabled = false;
+        Stop();
         Managers.Object.ClearMonster(controller);
     }
 }
