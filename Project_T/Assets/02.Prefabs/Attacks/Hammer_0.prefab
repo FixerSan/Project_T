@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   attackCooltime: 1
+  knockBackForce: 3
   player: {fileID: 0}
 --- !u!50 &5921131811781249241
 Rigidbody2D:

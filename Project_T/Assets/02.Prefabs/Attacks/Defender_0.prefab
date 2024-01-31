@@ -324,5 +324,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   attackCooltime: 3
+  knockBackForce: 2
   attackDuration: 3
   rotationForce: 500

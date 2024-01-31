@@ -29,6 +29,7 @@ public class Monster
 
     public void Move(Vector2 _moveDir)
     {
+        if (controller.isKnockBack) return;
         if (_moveDir.x > 0) controller.ChangeDirection(Define.Direction.Left);
         if (_moveDir.x < 0) controller.ChangeDirection(Define.Direction.Right);
 
@@ -37,6 +38,7 @@ public class Monster
 
     public void Stop()
     {
+        if (controller.isKnockBack) return;
         controller.rb.velocity = Vector2.zero;
     }
 
@@ -143,9 +145,9 @@ public class Monster
 
     public virtual IEnumerator DieRoutine()
     {
-        yield return new WaitForSeconds(2);
         controller.coll.enabled = false;
         Stop();
+        yield return new WaitForSeconds(1);
         Managers.Object.ClearMonster(controller);
     }
 }
