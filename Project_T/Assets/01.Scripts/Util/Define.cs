@@ -28,7 +28,7 @@ public class Define
 
     public enum Attacks
     {
-        Hammer
+        Hammer, Defender
     }
 
 

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class MonsterController : Actor
 
     private bool init = false;
     public bool isDead = false;
+    public bool isKnockBack = false;
 
     public Collider2D coll;
 
@@ -42,6 +44,7 @@ public class MonsterController : Actor
 
         init = true;
         isDead = false;
+        isKnockBack = false;
 
         status.defaultSpeed = 3;
         coll.enabled = true;
@@ -91,13 +94,36 @@ public class MonsterController : Actor
         Gizmos.DrawWireSphere(transform.position, monster.data.attackTargetRange);
     }
 
-    public override void Hit(float _damage)
+    public override void Hit(float _damage, Vector3 _knockBackDir, float _knockBackForce = 0f)
     {
-        GetDamage(_damage);
+        GetDamage(_damage, _callback:() => { KnockBack(_knockBackDir, _knockBackForce); });
     }
 
-    public override void GetDamage(float _damage)
+    public override void GetDamage(float _damage, Action _callback = null)
     {
         status.currentNowHP -= _damage;
+        if (status.currentNowHP <= 0)
+            return;
+        _callback?.Invoke();
+    }
+
+    public override void KnockBack(Vector3 _knockBackDir, float _knockBackForce = 0f)
+    {
+        if (_knockBackForce == 0f) return;
+        monster.Stop();
+        isKnockBack = true;
+        if(routines.ContainsKey(nameof(KnockBackRoutine)))
+        {
+            StopCoroutine(routines[nameof(KnockBackRoutine)]);
+            routines.Remove(nameof(KnockBackRoutine));
+        }
+        routines.Add(nameof(KnockBackRoutine), StartCoroutine(KnockBackRoutine(_knockBackDir, _knockBackForce)));
+    }
+
+    public IEnumerator KnockBackRoutine(Vector3 _knockBackDir, float _knockBackForce)
+    {
+        rb.AddForce(_knockBackDir * _knockBackForce, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.25f);
+        isKnockBack = false;
     }
 }

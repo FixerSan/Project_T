@@ -5,10 +5,8 @@ public class Player
 {
     public PlayerData data;
     public PlayerController controller;
-    public MonsterController attackTarget;
 
     private Collider2D[] tempColliders;
-    private MonsterController tempMonsterController;
     private Vector3 tempVector;
 
     private Vector3 dir;

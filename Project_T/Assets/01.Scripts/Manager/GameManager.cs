@@ -48,6 +48,14 @@ public class StageSystem
     public float needEXP;
     public float currentEXP;
 
+    public Transform PlayerAttackTrans
+    {
+        get
+        {
+            return Managers.Object.PlayerController.FindAttackTarget();
+        }
+    }
+
     public void GetAttack(Define.Attacks _attackType)
     {
         int currentAttackLevel = 0;
@@ -55,12 +63,12 @@ public class StageSystem
         if(attacks.ContainsKey(_attackType))
         {
             //있는 무기이면 현재 무기삭제
-            currentAttackLevel = attacks[_attackType].level;
+            currentAttackLevel = attacks[_attackType].level + 1;
             Managers.Resource.Destroy(attacks[_attackType].gameObject);
             attacks.Remove(_attackType);
         }
        //무기 추가
-        Managers.Object.PlayerController.AddAttack(_attackType, currentAttackLevel + 1 , (_attack) => { attacks.Add(_attackType, _attack); });
+        Managers.Object.PlayerAttackController.AddAttack(_attackType, currentAttackLevel, (_attack) => { attacks.Add(_attackType, _attack); });
     }
 
     public void GetEXP(float _exp)

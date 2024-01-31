@@ -5,5 +5,12 @@ using UnityEngine;
 public abstract class BaseAttack : MonoBehaviour
 {
     public int level;
-    public abstract void Init(PlayerController player);
+    protected bool init = true;
+    protected bool isAttacking = false;
+
+    public float attackCooltime;
+    protected float attackCooltimer;
+    public float knockBackForce;
+
+    public abstract void Init(PlayerController _player);
 }

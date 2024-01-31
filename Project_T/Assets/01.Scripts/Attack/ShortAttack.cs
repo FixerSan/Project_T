@@ -9,31 +9,29 @@ public class ShortAttack : BaseAttack
     private SpriteRenderer sr;
     private Animator animator;
 
-    public float attackTime;
-    private float attackTimer;
+    private Vector3 dir;
+    private float angle;
 
-    private bool init = false;
-    private bool isAttacking = false;
     public override void Init(PlayerController _player)
     {
         player = _player;
         sr = Util.FindChild<SpriteRenderer>(gameObject, "Sprite", true);
         animator = GetComponent<Animator>();
-        attackTimer = 0;
+        attackCooltimer = 0;
         init = true;
     }
 
     public void Update()
     {
         if (!init) return;
-        CheckAttack();
-
+        CheckStartAttack();
     }
 
-    public void CheckAttack()
+    public void CheckStartAttack()
     {
-        attackTimer -= Time.deltaTime;
-        if (attackTimer <= 0)
+        if (isAttacking) return;
+        attackCooltimer -= Time.deltaTime;
+        if (attackCooltimer <= 0)
         {
             StartAttack();
         }
@@ -41,8 +39,14 @@ public class ShortAttack : BaseAttack
 
     public void StartAttack()
     {
-        attackTimer = attackTime;
+        attackCooltimer = attackCooltime;
         sr.enabled = true;
+
+        //가까운 적 바라보게 하기
+        dir = (Managers.Game.stage.PlayerAttackTrans.position - transform.position);
+        angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle - 180, Vector3.forward);
+
         animator.Play("Attack");
         isAttacking = true;
     }
@@ -57,7 +61,7 @@ public class ShortAttack : BaseAttack
     {
         if (actors.ContainsKey(_actor.GetInstanceID())) return;
         actors.Add(_actor.GetInstanceID(), _actor);
-        Managers.Battle.AttackCalculation(player, _actor);
+        Managers.Battle.AttackCalculation(player, _actor, _damage:1, _knockBackForce: knockBackForce);
     }
 
 

@@ -43,12 +43,22 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
   - m_GUID: 95e3f54040eb1aa4591745fed3ebb6a3
-    m_Address: Hammer.prefab
+    m_Address: Hammer_0.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
   - m_GUID: f80b645647ded564f814eb1e0a0b4b46
     m_Address: StageLevelDataProfile
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: 57ac746e40faa6441bdf575b1a2becc4
+    m_Address: Defender_0.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: eb4080f3a565398418f4cd573736f0d4
+    m_Address: PlayerAttackController.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

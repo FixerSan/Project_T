@@ -17,10 +17,12 @@ public class PlayerController : Actor
     public Rigidbody2D rb;
     public Animator anim;
 
+    public MonsterController attackTarget;
+
+    public readonly Vector3 positionVisualOffset = new Vector3(0f, 0.4f, 0f);
+
     public bool isDead = false;
     private bool init = false;
-
-    public Transform attackTrans;
 
     public void Init(Player _player, Dictionary<Define.PlayerState, State<PlayerController>> _states, Status _status)
     {
@@ -38,7 +40,6 @@ public class PlayerController : Actor
         animationHashs.Add(Define.PlayerState.Die, Animator.StringToHash("4_Death")); 
 
         anim = Util.FindChild<Animator>(gameObject, "Sprite", true);
-        attackTrans = Util.FindChild<Transform>(gameObject, "AttackTrans", true);
 
         isDead = false;
         init = true;
@@ -47,6 +48,7 @@ public class PlayerController : Actor
         status.defaultAttackForce = 100;
 
         Managers.Game.stage.GetAttack(Define.Attacks.Hammer);
+        Managers.Game.stage.GetAttack(Define.Attacks.Defender);
     }
 
     public void Update()
@@ -78,22 +80,36 @@ public class PlayerController : Actor
         if (currentState != changeState)
             ChangeState(changeState);
     }
-    public override void Hit(float _damage)
+    public override void Hit(float _damage, Vector3 _knockBackDir, float _knockBackForce = 0)
     {
         GetDamage(_damage);
     }
 
-    public override void GetDamage(float _damage)
+    public override void GetDamage(float _damage, Action _callback = null)
     {
         status.currentNowHP -= _damage;
     }
-
-    public void AddAttack(Define.Attacks _attack,int _level, Action<BaseAttack> _callback)
+    public override void KnockBack(Vector3 _knockBackDir, float _knockBackForce = 0)
     {
-        BaseAttack attack = Managers.Resource.Instantiate($"{_attack}_{_level}").GetComponent<BaseAttack>();
-        attack.transform.SetParent(attackTrans);
-        attack.transform.localPosition = Vector3.zero;
-        attack.Init(this);
-        _callback.Invoke(attack);
+
     }
+
+    public Transform FindAttackTarget()
+    {
+        MonsterController attackTarget = null;
+        for (int i = 0; i < Managers.Object.monsters.Count; i++)
+        {
+            if (Managers.Object.monsters[i].currentState == Define.MonsterState.Die) continue;
+            if (attackTarget == null)
+            {
+                attackTarget = Managers.Object.monsters[i];
+                continue;
+            }
+
+            if (Vector2.Distance(transform.position + positionVisualOffset, attackTarget.transform.position) > Vector2.Distance(transform.position + positionVisualOffset, Managers.Object.monsters[i].transform.position))
+                attackTarget = Managers.Object.monsters[i];
+        }
+        return attackTarget.transform;
+    }
+
 }

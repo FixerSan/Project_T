@@ -1,4 +1,5 @@
 using Monsters;
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,6 +20,17 @@ public class ObjectManager
     }
     private PlayerMovePos playerMovePos;
 
+    private PlayerAttackController playerAttackController;
+    public PlayerAttackController PlayerAttackController 
+    {
+        get 
+        {
+            if (playerAttackController == null)
+                CreatePlayerAttackController();
+            return playerAttackController;
+        }
+    }
+
 
     public Transform PlayerControllerTrans
     {
@@ -37,6 +49,21 @@ public class ObjectManager
     public Transform playerControllerTrans;
 
     public List<MonsterController> monsters = new List<MonsterController>();
+    public Transform MonsterTrans
+    {
+        get
+        {
+            if(monsterTrans == null)
+            {
+                GameObject go = GameObject.Find("@MonsterTrans");
+                if(go == null)
+                    go = new GameObject("@MonsterTrans");
+                monsterTrans = go.transform;
+            }
+            return monsterTrans;
+        }
+    }
+    private Transform monsterTrans;
 
     public PlayerController SpawnPlayer(Vector3 _playerPos)
     {
@@ -85,6 +112,7 @@ public class ObjectManager
                 break;
         }
         controller.SetPosition(_monsterPos);
+        controller.transform.SetParent(MonsterTrans);
         controller.Init(monster, states,new Status());
         controller.monster.attackTarget = playerController;
         monsters.Add(controller);
@@ -115,11 +143,21 @@ public class ObjectManager
         monsters.Clear();
     }
 
-    public void CreatePlayerMovePos()
+    public PlayerMovePos CreatePlayerMovePos()
     {
         GameObject go = GameObject.Find("PlayerMovePos");
         if(go == null)
             go = Managers.Resource.Instantiate("PlayerMovePos");
         playerMovePos = go.GetOrAddComponent<PlayerMovePos>();
+        return playerMovePos;
+    }
+
+    public PlayerAttackController CreatePlayerAttackController()
+    {
+        GameObject go = GameObject.Find("PlayerAttackController");
+        if (go == null)
+            go = Managers.Resource.Instantiate("PlayerAttackController");
+        playerAttackController = go.GetOrAddComponent<PlayerAttackController>();
+        return playerAttackController;
     }
 }

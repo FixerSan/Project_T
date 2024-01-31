@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public abstract class Actor : MonoBehaviour
 {
     public Status status;
+    public Define.Direction currentDirection;
     public Dictionary<string, Coroutine> routines = new Dictionary<string, Coroutine>();
     protected Vector3 tempVecter = Vector3.zero;
 
@@ -13,9 +15,9 @@ public abstract class Actor : MonoBehaviour
         transform.position = _pos;
     }
 
-    public abstract void Hit(float _damage);
-    public abstract void GetDamage(float _damage);
-
+    public abstract void Hit(float _damage, Vector3 _knockBackDir, float _knockBackForce = 0);
+    public abstract void GetDamage(float _damage, Action _callback = null);
+    public abstract void KnockBack(Vector3 _knockBackDir, float _knockBackForce = 0);
 
     public void ChangeDirection(Define.Direction _direction)
     {
@@ -23,5 +25,6 @@ public abstract class Actor : MonoBehaviour
         if (_direction == Define.Direction.Right) tempVecter.y = 0;
 
         transform.eulerAngles = tempVecter;
+        currentDirection = _direction;
     }
 }
