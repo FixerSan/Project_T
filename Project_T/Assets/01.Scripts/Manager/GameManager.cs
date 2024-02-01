@@ -8,11 +8,6 @@ public class GameManager : Singleton<GameManager>
     public GameSettingsProfile gameSettings;
     public StageSystem stage = new StageSystem();
 
-    private void Awake()
-    {
-        GameStart();
-    }
-
     //게임 시작 되었을 때
     public void GameStart()
     {
@@ -35,7 +30,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StartStage()
     {
-        stage.Clear();
+        stage.Init();
     }
 }
 
@@ -54,6 +49,13 @@ public class StageSystem
         {
             return Managers.Object.PlayerController.FindAttackTarget();
         }
+    }
+
+    public void Init()
+    {
+        currentPlayerLevel = 1;
+        currentEXP = 0;
+        needEXP = Managers.Data.GetStageLevelData(currentPlayerLevel).needEXP;
     }
 
     public void GetAttack(Define.Attacks _attackType)
@@ -77,6 +79,7 @@ public class StageSystem
         currentEXP += _exp;
         if (currentEXP >= needEXP)
             LevelUp();
+        RedrawUI();
     }
 
     public void LevelUp()
@@ -89,8 +92,16 @@ public class StageSystem
         needEXP = data.needEXP;
 
         //TODO :: 레벨업 하고 나서 무기 선택 창
+
+
+        RedrawUI();
     }
 
+
+    public void RedrawUI()
+    {
+        Managers.UI.SceneUI.RedrawUI();
+    }
     public void Clear()
     {
         //초기화

@@ -62,6 +62,36 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
+  - m_GUID: 57e1dd450a27a6e4f9cd9a34ce69c8ec
+    m_Address: Defender_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: 4586abd5f297f304fb89e1f4ba514b83
+    m_Address: EXP_1.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: dc4f926a823485f458ae0c9ab3c5c921
+    m_Address: EXP_2.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: 63080c8109251f14d9edf58bbf1a081b
+    m_Address: EXP_3.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: bde252cdf17a8e94a8ffe9c69ae38463
+    m_Address: UIScene_Stage.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: 329aec2aedc088746935075fc19cd167
+    m_Address: EXPController.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3909b773da7e7b34fa5db52770212107, type: 2}
   m_SchemaSet:

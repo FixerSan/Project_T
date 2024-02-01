@@ -78,7 +78,6 @@ public class Defender : BaseAttack
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isAttacking) return;
-        Debug.Log(collision.name);
         if (collision.CompareTag("Enemy"))
             Attack(collision.GetComponent<Actor>());
     }

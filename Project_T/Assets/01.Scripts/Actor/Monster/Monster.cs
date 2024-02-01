@@ -141,6 +141,7 @@ public class Monster
         controller.isDead = true;
         controller.StopAllCoroutines();
         controller.StartCoroutine(DieRoutine());
+        Managers.Object.SpawnEXPController(data.expLevel, data.exp, controller.transform.position);
     }
 
     public virtual IEnumerator DieRoutine()
@@ -168,10 +169,17 @@ public class MonsterData
 {
     public float findAttackTargetRange;
     public float attackTargetRange;
+
+    public int expLevel;
+    public float exp;
+
     public MonsterData()
     {
         findAttackTargetRange = 2.0f;
         attackTargetRange = 1.0f;
+
+        exp = 10;
+        expLevel = 1;
     }
 }
 

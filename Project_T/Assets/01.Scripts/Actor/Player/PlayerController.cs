@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using JetBrains.Annotations;
@@ -48,6 +48,7 @@ public class PlayerController : Actor
         status.defaultAttackForce = 100;
 
         Managers.Game.stage.GetAttack(Define.Attacks.Hammer);
+        Managers.Game.stage.GetAttack(Define.Attacks.Defender);
         Managers.Game.stage.GetAttack(Define.Attacks.Defender);
     }
 
@@ -109,6 +110,8 @@ public class PlayerController : Actor
             if (Vector2.Distance(transform.position + positionVisualOffset, attackTarget.transform.position) > Vector2.Distance(transform.position + positionVisualOffset, Managers.Object.monsters[i].transform.position))
                 attackTarget = Managers.Object.monsters[i];
         }
+
+        if (attackTarget == null) return null;
         return attackTarget.transform;
     }
 

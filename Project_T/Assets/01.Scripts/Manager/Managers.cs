@@ -33,7 +33,7 @@ public class Managers : Singleton<Managers>
 
 
     [RuntimeInitializeOnLoadMethod()]
-    public static void CreateManagers()
+    public static void Init()
     {
         Instance.resource = new ResourceManager();
         Instance.pool = new PoolManager();
@@ -48,5 +48,7 @@ public class Managers : Singleton<Managers>
         Instance.input = InputManager.Instance;
         Instance.routine = CoroutineManager.Instance;
         Instance.game = GameManager.Instance;
+
+        Instance.game.GameStart();
     }
 }

@@ -73,7 +73,6 @@ public class ShortAttack : BaseAttack
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (!isAttacking) return;
-        Debug.Log(collision.name);
         if (collision.CompareTag("Enemy"))
             Attack(collision.GetComponent<Actor>());
     }

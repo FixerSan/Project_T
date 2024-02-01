@@ -15,3 +15,7 @@ MonoBehaviour:
   datas:
   - level: 1
     needEXP: 100
+  - level: 2
+    needEXP: 200
+  - level: 3
+    needEXP: 300

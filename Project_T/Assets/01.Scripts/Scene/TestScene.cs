@@ -8,7 +8,8 @@ public class TestScene : BaseScene
     Vector3 pos = Vector3.zero;
     public override void Init(Action _callback)
     {
-        Managers.UI.ShowSceneUI<UIScene_Test>();
+        Managers.Game.StartStage();
+        Managers.UI.ShowSceneUI<UIScene_Stage>();
         Managers.Screen.CameraController.SetTarget(Managers.Object.SpawnPlayer(Vector3.zero).transform);
 
 

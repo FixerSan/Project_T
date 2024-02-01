@@ -65,6 +65,24 @@ public class ObjectManager
     }
     private Transform monsterTrans;
 
+
+    public List<EXPController> exps = new List<EXPController>();
+    public Transform EXPTrans
+    {
+        get
+        {
+            if (expTrans == null)
+            {
+                GameObject go = GameObject.Find("@EXPTrans");
+                if (go == null)
+                    go = new GameObject("@EXPTrans");
+                expTrans = go.transform;
+            }
+            return expTrans;
+        }
+    }
+    private Transform expTrans;
+
     public PlayerController SpawnPlayer(Vector3 _playerPos)
     {
         playerController = Managers.Resource.Instantiate($"Player").GetOrAddComponent<PlayerController>();
@@ -159,5 +177,21 @@ public class ObjectManager
             go = Managers.Resource.Instantiate("PlayerAttackController");
         playerAttackController = go.GetOrAddComponent<PlayerAttackController>();
         return playerAttackController;
+    }
+
+    public EXPController SpawnEXPController(int _expLevel, float _exp, Vector3 _spanwPos)
+    {
+        EXPController controller = Managers.Resource.Instantiate("EXPController").GetOrAddComponent<EXPController>();
+        controller.Init(_expLevel, _exp);
+        controller.transform.SetParent(EXPTrans);
+        controller.transform.position = _spanwPos;
+        exps.Add(controller);
+        return controller;
+    }
+
+    public void ClearEXPController(EXPController _expController)
+    {
+        exps.Remove(_expController);
+        Managers.Resource.Destroy(_expController.gameObject);
     }
 }
