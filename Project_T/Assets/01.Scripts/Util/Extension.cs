@@ -109,4 +109,9 @@ public static class Extension
         _spriteRenderer.DOFade(0, _fadeOutTime).onComplete += () => { _callback?.Invoke(); };
     }
     #endregion
+    public static T GetRandomEnum<T>()
+    {
+        var enumValues = System.Enum.GetValues(enumType: typeof(T));
+        return (T)enumValues.GetValue(UnityEngine.Random.Range(0, enumValues.Length));
+    }
 }

@@ -224,4 +224,10 @@ public class UIManager
         sceneUI = null;
     }
 
+    public UISlot_LevelUpReward CleatLevelUpRewardSlot(int _skillIndex)
+    {
+        UISlot_LevelUpReward slot = Managers.Resource.Instantiate(nameof(UISlot_LevelUpReward)).GetOrAddComponent<UISlot_LevelUpReward>();
+        slot.Redraw(_skillIndex);
+        return slot;
+    }
 }

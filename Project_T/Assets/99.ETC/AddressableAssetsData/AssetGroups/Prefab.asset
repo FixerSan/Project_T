@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Prefab
+  m_EditorClassIdentifier: 
+  m_GroupName: Prefab
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 62b74bec57aede244b8d16e145415d11
+  m_SerializeEntries:
+  - m_GUID: 17eca2ed53ee8e74aad982c3c09d4d3c
+    m_Address: Player.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: 5f7634b910f39e641ae522983db1a0cf
+    m_Address: PlayerMovePos.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: b3562966064935d4ea109382e09058fc
+    m_Address: Main Camera.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: 61c86253d77da514198943c33a6b98c6
+    m_Address: Monster_0.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: eb4080f3a565398418f4cd573736f0d4
+    m_Address: PlayerAttackController.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: 329aec2aedc088746935075fc19cd167
+    m_Address: EXPController.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3909b773da7e7b34fa5db52770212107, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6963c905ddd13eb499eb9c1681c2f166, type: 2}
+    - {fileID: 11400000, guid: 22ebd0f7d5987514c9ab4726755c1a8b, type: 2}

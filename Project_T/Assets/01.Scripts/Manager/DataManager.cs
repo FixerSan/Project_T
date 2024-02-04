@@ -7,6 +7,7 @@ public class DataManager
 {
     public Dictionary<int, UserData> userDatas = new Dictionary<int, UserData>();
     public Dictionary<int, StageLevelData> stageLevelDatas = new Dictionary<int, StageLevelData>();
+    public Dictionary<int, SkillData> attackDatas = new Dictionary<int, SkillData>();
 
     public UserData GetUserData(int _index)
     {
@@ -19,10 +20,16 @@ public class DataManager
         if (stageLevelDatas.TryGetValue(_index, out StageLevelData _data)) return _data;
         return null;
     }
+    public SkillData GetAttackData(int _index)
+    {
+        if (attackDatas.TryGetValue(_index, out SkillData _data)) return _data;
+        return null;
+    }
 
     public void LoadPreData(Action _callback)
     {
         //LoadUserData();
+        LoadAttackData();
         LoadStageLevelData();
         _callback?.Invoke();
     }
@@ -40,6 +47,13 @@ public class DataManager
         StageLevelDataProfile proflie = Managers.Resource.Load<StageLevelDataProfile>("StageLevelDataProfile");
         for (int i = 0; i < proflie.datas.Count; i++)
             stageLevelDatas.Add(proflie.datas[i].level, proflie.datas[i]);
+    }
+
+    public void LoadAttackData()
+    {
+        SkillDataProfile proflie = Managers.Resource.Load<SkillDataProfile>("AttackDataProfile");
+        for (int i = 0; i < proflie.datas.Count; i++)
+            attackDatas.Add(proflie.datas[i].index, proflie.datas[i]);
     }
 }
 
@@ -60,4 +74,13 @@ public class StageLevelData
 {
     public int level;
     public float needEXP;
+}
+
+[System.Serializable]
+public class SkillData
+{
+    public int index;
+    public string name;
+    public string description;
+    public Define.Attacks attackType;
 }

@@ -48,8 +48,6 @@ public class PlayerController : Actor
         status.defaultAttackForce = 100;
 
         Managers.Game.stage.GetAttack(Define.Attacks.Hammer);
-        Managers.Game.stage.GetAttack(Define.Attacks.Defender);
-        Managers.Game.stage.GetAttack(Define.Attacks.Defender);
     }
 
     public void Update()

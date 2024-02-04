@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 7181144147602272808}
   - component: {fileID: 5921131811781249241}
   m_Layer: 5
-  m_Name: Hammer_0
+  m_Name: Hammer_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42435d20be69bbe408b9b7f3c0dd86b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 0
+  level: 1
   attackCooltime: 1
   knockBackForce: 3
   player: {fileID: 0}

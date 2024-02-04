@@ -28,7 +28,7 @@ public class Define
 
     public enum Attacks
     {
-        Hammer, Defender
+        Hammer, Defender = 10, TestAttack = 20
     }
 
 
@@ -56,7 +56,12 @@ public class Define
 
     public enum UIType
     {
-        UIScene_Test
+        UIScene_Test, UIPopup_SelectLevelUpReward
+    }
+
+    public enum UISlot
+    {
+        UISlot_LevelUpReward
     }
 
     public enum Scene

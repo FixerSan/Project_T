@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Sprite
+  m_EditorClassIdentifier: 
+  m_GroupName: Sprite
+  m_Data:
+    m_SerializedData: []
+  m_GUID: bb206de9b43f9c844bfa9a86f17f0d04
+  m_SerializeEntries:
+  - m_GUID: 43d4f5eb894474241847b06aa947c0b2
+    m_Address: Hammer.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4586abd5f297f304fb89e1f4ba514b83
+    m_Address: EXP_1.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dc4f926a823485f458ae0c9ab3c5c921
+    m_Address: EXP_2.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 63080c8109251f14d9edf58bbf1a081b
+    m_Address: EXP_3.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d4ef13f85eb3c004da8d705d92426d0d
+    m_Address: EnableStar.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea4d76e8b63f4bb4b9ac6c33b98e07eb
+    m_Address: DisableStar.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 22957a0cccbf1954cb34a7309199cf36
+    m_Address: Defender.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 128687256033b974d9b95d3a1d5357c0
+    m_Address: Test.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3909b773da7e7b34fa5db52770212107, type: 2}
+  m_SchemaSet:
+    m_Schemas: []

@@ -1,6 +1,5 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.Transactions;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -11,7 +10,7 @@ public class GameManager : Singleton<GameManager>
     //게임 시작 되었을 때
     public void GameStart()
     {
-        Managers.Resource.LoadAllAsync<Object>("Preload", _completeCallback: () =>                  //프리로드 리소스 로드
+        Managers.Resource.LoadAllAsync<UnityEngine.Object>("Preload", _completeCallback: () =>                  //프리로드 리소스 로드
         {
             Managers.Data.LoadPreData(() => 
             {
@@ -60,7 +59,7 @@ public class StageSystem
 
     public void GetAttack(Define.Attacks _attackType)
     {
-        int currentAttackLevel = 0;
+        int currentAttackLevel = 1;
         //있는 무기 인지 체크
         if(attacks.ContainsKey(_attackType))
         {
@@ -92,11 +91,55 @@ public class StageSystem
         needEXP = data.needEXP;
 
         //TODO :: 레벨업 하고 나서 무기 선택 창
+        Time.timeScale = 0;
 
+        int[] skillIndexes = GetRandomIndex();
+        bool isSame = CheckSame(skillIndexes);
 
+        while(isSame)
+        {
+            skillIndexes = GetRandomIndex();
+            isSame = CheckSame(skillIndexes);
+        }
+
+        Managers.UI.ShowPopupUI<UIPopup_SelectLevelUpReward>().RedrawUI(skillIndexes);
         RedrawUI();
     }
 
+    public int[] GetRandomIndex()
+    {
+        int[] skillIndexes = new int[3] { (int)Extension.GetRandomEnum<Define.Attacks>(), (int)Extension.GetRandomEnum<Define.Attacks>(), (int)Extension.GetRandomEnum<Define.Attacks>() };
+        return skillIndexes;
+    }
+
+    public bool CheckSame(int[] _skillIndexes)
+    {
+        bool isSame = false;
+
+        for (int i = 0; i < _skillIndexes.Length; i++)
+        {
+            if (isSame) break;
+            for (int j = 0; j < _skillIndexes.Length; j++)
+            {
+                if (i == j) continue;
+                if (_skillIndexes[j] == _skillIndexes[i])
+                {
+                    isSame = true;
+                    break;
+                }
+            }
+        }
+
+        return isSame;
+    }
+
+    public void SelectLevelUpReward(int _selectAttackIndex)
+    {
+        SkillData skill = Managers.Data.GetAttackData(_selectAttackIndex);
+        Managers.UI.ClosePopupUI(Managers.UI.activePopups[Define.UIType.UIPopup_SelectLevelUpReward]);
+        Time.timeScale = 1;
+        Managers.Game.stage.GetAttack(skill.attackType);
+    }
 
     public void RedrawUI()
     {
