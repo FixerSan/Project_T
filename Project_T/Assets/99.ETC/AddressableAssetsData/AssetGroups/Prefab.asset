@@ -47,6 +47,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
+  - m_GUID: bcbebf05c3588df45acdf2a02fd89011
+    m_Address: BoomController.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3909b773da7e7b34fa5db52770212107, type: 2}
   m_SchemaSet:

@@ -48,6 +48,7 @@ public abstract class UIBase : MonoBehaviour
         }
     }
     protected void BindObject(Type _type) { Bind<GameObject>(_type); }
+    protected void BindRect(Type _type) { Bind<RectTransform>(_type); }
     protected void BindImage(Type _type) { Bind<Image>(_type); }
     protected void BindText(Type _type) { Bind<TMP_Text>(_type); }
     protected void BindButton(Type _type) { Bind<Button>(_type); }
@@ -65,6 +66,7 @@ public abstract class UIBase : MonoBehaviour
     }
 
     protected GameObject GetObject(int _index) { return Get<GameObject>(_index); }
+    protected RectTransform GetRect(int _index) { return Get<RectTransform>(_index); }
     protected TMP_Text GetText(int _index) { return Get<TMP_Text>(_index); }
     protected Button GetButton(int _index) { return Get<Button>(_index); }
     protected Image GetImage(int _index) { return Get<Image>(_index); }

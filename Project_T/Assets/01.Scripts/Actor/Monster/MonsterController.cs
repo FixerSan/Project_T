@@ -15,6 +15,7 @@ public class MonsterController : Actor
     public Define.MonsterState currentState;
     public Define.MonsterState changeState;
     public Rigidbody2D rb;
+    public SpriteRenderer sr;
     public Animator anim;
 
     private bool init = false;
@@ -34,6 +35,7 @@ public class MonsterController : Actor
         rb = gameObject.GetOrAddComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         anim = Util.FindChild<Animator>(gameObject, "Sprite", true);
+        sr = Util.FindChild<SpriteRenderer>(gameObject, _recursive:true);
 
         animationHashs.Clear();
         animationHashs.Add(Define.MonsterState.Idle, Animator.StringToHash("0_idle"));

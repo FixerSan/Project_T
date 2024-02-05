@@ -67,21 +67,23 @@ public class ObjectManager
 
 
     public List<EXPController> exps = new List<EXPController>();
-    public Transform EXPTrans
+    public List<BoomController> booms = new List<BoomController>();
+
+    public Transform ItemTrans
     {
         get
         {
-            if (expTrans == null)
+            if (itemTrans == null)
             {
-                GameObject go = GameObject.Find("@EXPTrans");
+                GameObject go = GameObject.Find("@ItemTrans");
                 if (go == null)
-                    go = new GameObject("@EXPTrans");
-                expTrans = go.transform;
+                    go = new GameObject("@ItemTrans");
+                itemTrans = go.transform;
             }
-            return expTrans;
+            return itemTrans;
         }
     }
-    private Transform expTrans;
+    private Transform itemTrans;
 
     public PlayerController SpawnPlayer(Vector3 _playerPos)
     {
@@ -183,7 +185,7 @@ public class ObjectManager
     {
         EXPController controller = Managers.Resource.Instantiate("EXPController").GetOrAddComponent<EXPController>();
         controller.Init(_expLevel, _exp);
-        controller.transform.SetParent(EXPTrans);
+        controller.transform.SetParent(ItemTrans);
         controller.transform.position = _spanwPos;
         exps.Add(controller);
         return controller;
@@ -193,5 +195,20 @@ public class ObjectManager
     {
         exps.Remove(_expController);
         Managers.Resource.Destroy(_expController.gameObject);
+    }
+
+    public BoomController SpawnBoomController(Vector3 _spanwPos)
+    {
+        BoomController controller = Managers.Resource.Instantiate("BoomController").GetOrAddComponent<BoomController>();
+        controller.transform.SetParent(ItemTrans);
+        controller.transform.position = _spanwPos;
+        booms.Add(controller);
+        return controller;
+    }
+
+    public void ClearBoomController(BoomController _boomController)
+    {
+        booms.Remove(_boomController);
+        Managers.Resource.Destroy(_boomController.gameObject);
     }
 }

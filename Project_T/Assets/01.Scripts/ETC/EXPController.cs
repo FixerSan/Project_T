@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EXPController : MonoBehaviour
+public class EXPController : BaseItemController
 {
     public SpriteRenderer sr;
     public int level;
@@ -17,12 +17,9 @@ public class EXPController : MonoBehaviour
         Managers.Resource.Load<Sprite>($"EXP_{level}", (_sprite) => { sr.sprite = _sprite; });
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void Interaction()
     {
-        Debug.Log(collision.tag);
-        if (!collision.CompareTag("Player")) return;
         Managers.Game.stage.GetEXP(exp);
         Managers.Object.ClearEXPController(this);
-
     }
 }

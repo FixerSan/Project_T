@@ -136,9 +136,18 @@ public class StageSystem
     public void SelectLevelUpReward(int _selectAttackIndex)
     {
         SkillData skill = Managers.Data.GetAttackData(_selectAttackIndex);
-        Managers.UI.ClosePopupUI(Managers.UI.activePopups[Define.UIType.UIPopup_SelectLevelUpReward]);
+        Managers.UI.activePopups[Define.UIType.UIPopup_SelectLevelUpReward].ClosePopupUP();
         Time.timeScale = 1;
         Managers.Game.stage.GetAttack(skill.attackType);
+    }
+
+    public void GetItem_Boom()
+    {
+        for (int i = 0; i < Managers.Object.monsters.Count; i++)
+        {
+            if (Managers.Object.monsters[i].sr.isVisible)
+                Managers.Object.monsters[i].ChangeState(Define.MonsterState.Die);
+        }
     }
 
     public void RedrawUI()

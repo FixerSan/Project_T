@@ -50,6 +50,7 @@ public class ShortAttack : BaseAttack
         animator.Play("Attack");
         isAttacking = true;
     }
+
     public void EndAttack()
     {
         isAttacking = false;
