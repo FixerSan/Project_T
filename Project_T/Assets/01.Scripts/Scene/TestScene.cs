@@ -14,6 +14,7 @@ public class TestScene : BaseScene
         Managers.UI.ShowSceneUI<UIScene_Stage>();
         Managers.Screen.CameraController.SetTarget(Managers.Object.SpawnPlayer(Vector3.zero).transform);
         Managers.Object.SpawnBoomController(new Vector3(0, 5, 0));
+        Managers.Object.SpawnMagnetController(new Vector3(0, 10, 0));
         _callback?.Invoke();
     }
 

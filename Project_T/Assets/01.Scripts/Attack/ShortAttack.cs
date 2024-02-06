@@ -42,6 +42,8 @@ public class ShortAttack : BaseAttack
         attackCooltimer = attackCooltime;
         sr.enabled = true;
 
+        if (Managers.Game.stage.PlayerAttackTrans == null) return;
+
         //가까운 적 바라보게 하기
         dir = (Managers.Game.stage.PlayerAttackTrans.position - transform.position);
         angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

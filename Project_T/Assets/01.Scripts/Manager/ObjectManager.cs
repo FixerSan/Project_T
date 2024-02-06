@@ -68,6 +68,7 @@ public class ObjectManager
 
     public List<EXPController> exps = new List<EXPController>();
     public List<BoomController> booms = new List<BoomController>();
+    public List<MagnetController> magnets = new List<MagnetController>();
 
     public Transform ItemTrans
     {
@@ -191,10 +192,10 @@ public class ObjectManager
         return controller;
     }
 
-    public void ClearEXPController(EXPController _expController)
+    public void ClearEXPController(EXPController _controller)
     {
-        exps.Remove(_expController);
-        Managers.Resource.Destroy(_expController.gameObject);
+        exps.Remove(_controller);
+        Managers.Resource.Destroy(_controller.gameObject);
     }
 
     public BoomController SpawnBoomController(Vector3 _spanwPos)
@@ -206,9 +207,24 @@ public class ObjectManager
         return controller;
     }
 
-    public void ClearBoomController(BoomController _boomController)
+    public void ClearBoomController(BoomController _controller)
     {
-        booms.Remove(_boomController);
-        Managers.Resource.Destroy(_boomController.gameObject);
+        booms.Remove(_controller);
+        Managers.Resource.Destroy(_controller.gameObject);
+    }
+
+    public MagnetController SpawnMagnetController(Vector3 _spanwPos)
+    {
+        MagnetController controller = Managers.Resource.Instantiate("MagnetController").GetOrAddComponent<MagnetController>();
+        controller.transform.SetParent(ItemTrans);
+        controller.transform.position = _spanwPos;
+        magnets.Add(controller);
+        return controller;
+    }
+
+    public void ClearMagnetController(MagnetController _controller)
+    {
+        magnets.Remove(_controller);
+        Managers.Resource.Destroy(_controller.gameObject);
     }
 }

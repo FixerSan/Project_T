@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Item
+  m_EditorClassIdentifier: 
+  m_GroupName: Item
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 13b0b23d4d21ee14db504c856d2ddaff
+  m_SerializeEntries:
+  - m_GUID: 329aec2aedc088746935075fc19cd167
+    m_Address: EXPController.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: bcbebf05c3588df45acdf2a02fd89011
+    m_Address: BoomController.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: 56346330ecdd6e94e904f7ff34b0b641
+    m_Address: MagnetController.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3909b773da7e7b34fa5db52770212107, type: 2}
+  m_SchemaSet:
+    m_Schemas: []
