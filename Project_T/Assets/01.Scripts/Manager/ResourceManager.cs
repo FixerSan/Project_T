@@ -76,6 +76,7 @@ public class ResourceManager
         {
             if(!resourceDictionary.ContainsKey(loadKey))
                 resourceDictionary.Add(loadKey, op.Result);
+            Debug.Log(loadKey + "·Îµå µÊ");
             _callback?.Invoke(op.Result as T);
         };
     }

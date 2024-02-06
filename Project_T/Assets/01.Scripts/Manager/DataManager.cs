@@ -44,16 +44,20 @@ public class DataManager
 
     public void LoadStageLevelData()
     {
-        StageLevelDataProfile proflie = Managers.Resource.Load<StageLevelDataProfile>("StageLevelDataProfile");
-        for (int i = 0; i < proflie.datas.Count; i++)
-            stageLevelDatas.Add(proflie.datas[i].level, proflie.datas[i]);
+        Managers.Resource.Load<StageLevelDataProfile>("StageLevelDataProfile", (_) => 
+        {
+            for (int i = 0; i < _.datas.Count; i++)
+                stageLevelDatas.Add(_.datas[i].level, _.datas[i]);
+        });
     }
 
     public void LoadAttackData()
     {
-        SkillDataProfile proflie = Managers.Resource.Load<SkillDataProfile>("AttackDataProfile");
-        for (int i = 0; i < proflie.datas.Count; i++)
-            attackDatas.Add(proflie.datas[i].index, proflie.datas[i]);
+        Managers.Resource.Load<SkillDataProfile>("AttackDataProfile", (_) =>
+        {
+            for (int i = 0; i < _.datas.Count; i++)
+                attackDatas.Add(_.datas[i].index, _.datas[i]);
+        });
     }
 }
 
