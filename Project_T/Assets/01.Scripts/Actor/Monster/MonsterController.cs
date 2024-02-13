@@ -85,6 +85,7 @@ public class MonsterController : Actor
         if (monster.CheckDie())
             return;
         CheckChangeStateInIspector();
+        if(CheckPlayerDistance()) return;
         fsm.Update();
     }
 
@@ -127,5 +128,15 @@ public class MonsterController : Actor
         rb.AddForce(_knockBackDir * _knockBackForce, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.25f);
         isKnockBack = false;
+    }
+
+    public bool CheckPlayerDistance()
+    {
+        if (Vector2.Distance(Managers.Object.PlayerController.transform.position, transform.position) >= 15)
+        {
+            Managers.Object.ClearMonster(this);
+            return true;
+        }
+        return false;
     }
 }

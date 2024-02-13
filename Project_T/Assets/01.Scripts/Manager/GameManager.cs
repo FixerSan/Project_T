@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -26,11 +27,17 @@ public class GameManager : Singleton<GameManager>
                 Debug.Log("n");            
             });
         });
+        Time.timeScale = 10;
     }
 
     public void StartStage()
     {
         stage.Init();
+    }
+
+    public void Update()
+    {
+        stage.Update();
     }
 }
 
@@ -43,6 +50,10 @@ public class StageSystem
     public float needEXP;
     public float currentEXP;
 
+    public bool isStarted = true;
+    public float time = 0;
+    public int currentStagePattern = 1;
+
     public Transform PlayerAttackTrans
     {
         get
@@ -52,7 +63,9 @@ public class StageSystem
     }
 
     public void Init()
-    {
+    {   
+        isStarted = true;
+        time = 0;
         currentPlayerLevel = 1;
         currentEXP = 0;
         needEXP = Managers.Data.GetStageLevelData(currentPlayerLevel).needEXP;
@@ -155,8 +168,9 @@ public class StageSystem
 
     public void RedrawUI()
     {
-        Managers.UI.SceneUI.RedrawUI();
+        Managers.UI.SceneUI?.RedrawUI();
     }
+
     public void Clear()
     {
         //ÃÊ±âÈ­
@@ -164,5 +178,43 @@ public class StageSystem
         StageLevelData data = Managers.Data.GetStageLevelData(currentPlayerLevel);
         needEXP = data.needEXP;
         currentEXP = 0;
+    }
+
+    public void Update()
+    {
+        if (!isStarted) return;
+        CheckTime();
+    }
+
+    public void CheckTime()
+    {
+        time += Time.deltaTime;
+        if (currentStagePattern == 1)
+        {
+            if(time >= 120f)
+            {
+                Managers.Scene.GetActiveScene<TestScene>().NextPattern();
+                currentStagePattern++;
+            }
+        }
+
+        if (currentStagePattern == 2)
+        {
+            if (time >= 240f)
+            {
+                Managers.Scene.GetActiveScene<TestScene>().NextPattern();
+                currentStagePattern++;
+            }
+        }
+
+        if (currentStagePattern == 3)
+        {
+            if (time >= 360f)
+            {
+                Managers.Scene.GetActiveScene<TestScene>().NextPattern();
+                currentStagePattern++;
+            }
+        }
+        RedrawUI();
     }
 }

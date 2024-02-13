@@ -46,7 +46,7 @@ public class ObjectManager
             return playerControllerTrans;
         }
     }
-    public Transform playerControllerTrans;
+    private Transform playerControllerTrans;
 
     public List<MonsterController> monsters = new List<MonsterController>();
     public Transform MonsterTrans
@@ -124,7 +124,7 @@ public class ObjectManager
             default:
                 monster = new BaseMonster(new MonsterData(), controller);
                 states.Add(Define.MonsterState.Create, new MonsterStates.Base.Create());
-                states.Add(Define.MonsterState.Idle, new MonsterStates.Base.Create());
+                states.Add(Define.MonsterState.Idle, new MonsterStates.Base.Idle());
                 states.Add(Define.MonsterState.Move, new MonsterStates.Base.Move());
                 states.Add(Define.MonsterState.Follow, new MonsterStates.Base.Follow());
                 states.Add(Define.MonsterState.Attack, new MonsterStates.Base.Attack());

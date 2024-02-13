@@ -3146,11 +3146,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d023a75e18e99343a4b1533375ef494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDirection: 0
   currentState: 0
   changeState: 0
   rb: {fileID: 0}
+  sr: {fileID: 0}
   anim: {fileID: 0}
   isDead: 0
+  isKnockBack: 0
+  coll: {fileID: 0}
 --- !u!50 &6341322459814423090
 Rigidbody2D:
   serializedVersion: 4
