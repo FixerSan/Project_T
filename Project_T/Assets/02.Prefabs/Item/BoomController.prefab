@@ -131,9 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d0a21799a14934f8e8cd4a529ebf81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstTweeningForce: 3
-  tweeningForce: 1
-  getTweeningDelay: 0.5
 --- !u!61 &8432697724133380143
 BoxCollider2D:
   m_ObjectHideFlags: 0

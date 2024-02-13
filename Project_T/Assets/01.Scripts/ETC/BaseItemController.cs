@@ -7,9 +7,10 @@ public abstract class BaseItemController : MonoBehaviour
     private bool isNotGet = true;
     private Vector3 dir;
     private Rigidbody2D rb;
-    public float firstTweeningForce = 3;
-    public float tweeningForce = 1;
-    public float getTweeningDelay = 0.25f;
+    private float firstTweeningForce = 3;
+    private float tweeningForce = 1;
+    private float getTweeningDelay = 0.25f;
+    private float maxSpeed = 30;
 
     public void Awake()
     {
@@ -48,6 +49,7 @@ public abstract class BaseItemController : MonoBehaviour
         while(true)
         {
             yield return null;
+            if (rb.velocity.magnitude >= maxSpeed) continue;
             dir = (_collision.transform.position - transform.position).normalized;
             rb.AddForce(dir * tweeningForce , ForceMode2D.Impulse);
         }

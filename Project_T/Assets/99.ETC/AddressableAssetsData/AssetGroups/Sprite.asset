@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: Sprite
   m_Data:
     m_SerializedData: []
-  m_GUID: bb206de9b43f9c844bfa9a86f17f0d04
+  m_GUID: 70beea55ce1fd144a89a77436e67e173
   m_SerializeEntries:
   - m_GUID: 43d4f5eb894474241847b06aa947c0b2
     m_Address: Hammer.sprite
@@ -52,4 +52,6 @@ MonoBehaviour:
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3909b773da7e7b34fa5db52770212107, type: 2}
   m_SchemaSet:
-    m_Schemas: []
+    m_Schemas:
+    - {fileID: 11400000, guid: 39b9c28988c2dc443af3ed88162b5fdb, type: 2}
+    - {fileID: 11400000, guid: 8cda09ac8e8e5c1469db110e6f17d82e, type: 2}

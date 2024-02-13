@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class UIPopup : UIBase
 {
@@ -14,9 +15,10 @@ public class UIPopup : UIBase
         return true;
     }
 
-    public virtual void ClosePopupUP()
+    public virtual void ClosePopupUP(Action _callback = null)
     {
         Managers.UI.ClosePopupUI(this);
+        _callback?.Invoke();
     }
 
     protected virtual void Update()

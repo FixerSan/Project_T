@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +11,11 @@ public class GameManager : Singleton<GameManager>
     //게임 시작 되었을 때
     public void GameStart()
     {
-        Managers.Resource.LoadAllAsync<UnityEngine.Object>("Preload", _completeCallback: () =>                  //프리로드 리소스 로드
+        Managers.Resource.LoadAllAsync<UnityEngine.Object>("Preload",_callback:(name,current,end) => { Debug.Log($"{name}이 로드됨 {current} / {end}"); }, _completeCallback: () =>                  //프리로드 리소스 로드
         {
             Managers.Data.LoadPreData(() => 
             {
-                gameSettings = Managers.Resource.Load<GameSettingsProfile>("GameSettingsProfile");      //게임 세팅 설정
+                gameSettings = Managers.Resource.Load<GameObject>("Datas").GetOrAddComponent<Datas>().game;      //게임 세팅 설정
                 if (gameSettings.isDebuging)                                                            //디버깅 중일 때
                 {
                     Debug.Log("y");
@@ -136,9 +137,11 @@ public class StageSystem
     public void SelectLevelUpReward(int _selectAttackIndex)
     {
         SkillData skill = Managers.Data.GetAttackData(_selectAttackIndex);
-        Managers.UI.activePopups[Define.UIType.UIPopup_SelectLevelUpReward].ClosePopupUP();
-        Time.timeScale = 1;
-        Managers.Game.stage.GetAttack(skill.attackType);
+        Managers.UI.activePopups[Define.UIType.UIPopup_SelectLevelUpReward].ClosePopupUP(() => 
+        {
+            Time.timeScale = 1;
+            Managers.Game.stage.GetAttack(skill.attackType);
+        });
     }
 
     public void GetItem_Boom()

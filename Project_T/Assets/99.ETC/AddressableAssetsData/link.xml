@@ -1,18 +1,26 @@
 <linker>
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="BoomController" preserve="all" />
     <type fullname="CameraController" preserve="all" />
+    <type fullname="Datas" preserve="all" />
     <type fullname="Defender" preserve="all" />
+    <type fullname="EXPController" preserve="all" />
     <type fullname="FloatingJoystick" preserve="all" />
+    <type fullname="GameSettingsProfile" preserve="all" />
+    <type fullname="MagnetController" preserve="all" />
     <type fullname="MonsterController" preserve="all" />
     <type fullname="PlayerAttackController" preserve="all" />
     <type fullname="PlayerController" preserve="all" />
     <type fullname="PlayerMovePos" preserve="all" />
     <type fullname="ShortAttack" preserve="all" />
+    <type fullname="SkillDataProfile" preserve="all" />
+    <type fullname="StageLevelDataProfile" preserve="all" />
     <type fullname="UIPopup_SelectLevelUpReward" preserve="all" />
     <type fullname="UIScene_Stage" preserve="all" />
     <type fullname="UIScene_Test" preserve="all" />
     <type fullname="UISlot_LevelUpReward" preserve="all" />
     <type fullname="SkillData" preserve="nothing" serialized="true" />
+    <type fullname="StageLevelData" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
