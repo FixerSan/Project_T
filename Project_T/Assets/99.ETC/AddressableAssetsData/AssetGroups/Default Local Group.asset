@@ -22,8 +22,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
-  - m_GUID: 96817b3663632004b8311ca7cffabeae
-    m_Address: Monster_1.prefab
+  - m_GUID: c85337c6295b91f48a3eb6af26e9f8a8
+    m_Address: UIScene_Main.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 public class GameManager : Singleton<GameManager>
 {
     public GameSettingsProfile gameSettings;
+    public MainSystem main = new MainSystem();
     public StageSystem stage = new StageSystem();
 
     //게임 시작 되었을 때
@@ -27,7 +28,6 @@ public class GameManager : Singleton<GameManager>
                 Debug.Log("n");            
             });
         });
-        Time.timeScale = 10;
     }
 
     public void StartStage()
@@ -41,6 +41,17 @@ public class GameManager : Singleton<GameManager>
     }
 }
 
+public class MainSystem
+{
+    public void OpenStageList()
+    {
+        Managers.Object.LobbyCharacterController.MoveToStage(() => 
+        {
+            Debug.Log("UI켜질 타이밍");
+        });
+    }
+}
+
 public class StageSystem
 {
     public Dictionary<Define.Attacks, BaseAttack> attacks = new Dictionary<Define.Attacks, BaseAttack>();
@@ -50,7 +61,7 @@ public class StageSystem
     public float needEXP;
     public float currentEXP;
 
-    public bool isStarted = true;
+    public bool isStarted = false;
     public float time = 0;
     public int currentStagePattern = 1;
 
@@ -66,6 +77,7 @@ public class StageSystem
     {   
         isStarted = true;
         time = 0;
+        currentStagePattern = 1;
         currentPlayerLevel = 1;
         currentEXP = 0;
         needEXP = Managers.Data.GetStageLevelData(currentPlayerLevel).needEXP;

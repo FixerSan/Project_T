@@ -73,4 +73,9 @@ public class Define
     {
 
     }
+
+    public enum LobbyCharacterState
+    {
+        Idle, MoveEffect, MoveToStage
+    }
 }

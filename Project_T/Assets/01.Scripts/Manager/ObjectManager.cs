@@ -70,6 +70,17 @@ public class ObjectManager
     public List<BoomController> booms = new List<BoomController>();
     public List<MagnetController> magnets = new List<MagnetController>();
 
+    public LobbyCharacterController LobbyCharacterController 
+    {
+        get 
+        {
+            if (lobbyCharacterController == null)
+                SpawnLobbyCharacterController();
+            return lobbyCharacterController;
+        }
+    }
+    private LobbyCharacterController lobbyCharacterController;
+
     public Transform ItemTrans
     {
         get
@@ -226,5 +237,15 @@ public class ObjectManager
     {
         magnets.Remove(_controller);
         Managers.Resource.Destroy(_controller.gameObject);
+    }
+
+    public LobbyCharacterController SpawnLobbyCharacterController()
+    {
+        GameObject go = Managers.Resource.Instantiate(nameof(LobbyCharacterController));
+        lobbyCharacterController = go.GetOrAddComponent<LobbyCharacterController>();
+        lobbyCharacterController.transform.position = new Vector3(0, -2.5f, 0);
+        lobbyCharacterController.transform.SetParent(null);
+        lobbyCharacterController.Init();
+        return lobbyCharacterController;
     }
 }

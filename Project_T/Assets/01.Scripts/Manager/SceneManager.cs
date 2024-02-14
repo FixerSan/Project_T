@@ -81,6 +81,10 @@ public class SceneManager
                 bs = sceneTrans.GetComponent<TestScene>();
                 break;
 
+            case Define.Scene.Main:
+                bs = SceneTrans.GetComponent<MainScene>();
+                break;
+
             default:
                 _callback?.Invoke();
                 return;
@@ -108,6 +112,10 @@ public class SceneManager
 
             case Define.Scene.Test:
                 bs = SceneTrans.gameObject.AddComponent<TestScene>();
+                break;
+
+            case Define.Scene.Main:
+                bs = SceneTrans.gameObject.AddComponent<MainScene>();
                 break;
 
             default:

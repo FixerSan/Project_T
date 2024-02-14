@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GameSettingsProfile
   m_EditorClassIdentifier: 
   isDebuging: 1
-  startScene: 3
+  startScene: 1
