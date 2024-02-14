@@ -47,7 +47,7 @@ public class MainSystem
     {
         Managers.Object.LobbyCharacterController.MoveToStage(() => 
         {
-            Debug.Log("UI켜질 타이밍");
+            Managers.Scene.LoadScene(Define.Scene.Test);
         });
     }
 }
