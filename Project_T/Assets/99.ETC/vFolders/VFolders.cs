@@ -1,18 +1,12 @@
 #if UNITY_EDITOR
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using UnityEditor.ShortcutManagement;
-using System.Reflection;
-using System.Linq;
 using System.IO;
-using UnityEngine.UIElements;
-using UnityEngine.SceneManagement;
-using UnityEditor.SceneManagement;
+using System.Linq;
+using UnityEditor;
 using UnityEditorInternal;
-using static VFolders.Libs.VUtils;
+using UnityEngine;
 using static VFolders.Libs.VGUI;
+using static VFolders.Libs.VUtils;
 using static VFolders.VFoldersData;
 
 

@@ -1,10 +1,8 @@
+using DG.Tweening;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using DG.Tweening;
 
 public static class Extension
 {
@@ -68,7 +66,7 @@ public static class Extension
             if (_array[i] == null)
                 count++;
         }
-        return count; 
+        return count;
     }
 
     public static int NotNullCount<T>(this T[] _array) where T : class

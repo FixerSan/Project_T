@@ -49,6 +49,10 @@ MonoBehaviour:
     m_Address: Test.sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 879d6a04f9f569646876b1f689b9e8b8
+    m_Address: Devil House.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3909b773da7e7b34fa5db52770212107, type: 2}
   m_SchemaSet:

@@ -1,11 +1,10 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.AddressableAssets;
 using Object = UnityEngine.Object;
 
-public class ResourceManager 
+public class ResourceManager
 {
     //로드된 오브젝트들을 담아놓는 딕셔너리
     private Dictionary<string, Object> resourceDictionary = new Dictionary<string, Object>();
@@ -28,24 +27,24 @@ public class ResourceManager
     }
 
     //로드 호출
-    public T Load<T>(string _key) where T:Object
+    public T Load<T>(string _key) where T : Object
     {
         return CheckLoaded<T>(_key);
     }
 
     //로딩창 사용 용도
-    public void LoadAllAsync<T>(string _label, Action<string,int,int> _callback = null, Action _completeCallback = null) where T : Object
+    public void LoadAllAsync<T>(string _label, Action<string, int, int> _callback = null, Action _completeCallback = null) where T : Object
     {
         var operationHandle = Addressables.LoadResourceLocationsAsync(_label, typeof(T));
 
-        operationHandle.Completed += (op) => 
+        operationHandle.Completed += (op) =>
         {
             int currentLoadCount = 0;
             int totalLoadCount = op.Result.Count;
 
             foreach (var result in op.Result)
             {
-                LoadAsync<T>(result.PrimaryKey, (ob) => 
+                LoadAsync<T>(result.PrimaryKey, (ob) =>
                 {
                     currentLoadCount++;
                     _callback?.Invoke(result.PrimaryKey, currentLoadCount, totalLoadCount);
@@ -72,11 +71,10 @@ public class ResourceManager
         string loadKey = ChangeKey<T>(_key);
 
         var asyncOperation = Addressables.LoadAssetAsync<T>(loadKey);
-        asyncOperation.Completed += (op) => 
+        asyncOperation.Completed += (op) =>
         {
-            if(!resourceDictionary.ContainsKey(loadKey))
+            if (!resourceDictionary.ContainsKey(loadKey))
                 resourceDictionary.Add(loadKey, op.Result);
-            Debug.Log(loadKey + "로드 됨");
             _callback?.Invoke(op.Result as T);
         };
     }

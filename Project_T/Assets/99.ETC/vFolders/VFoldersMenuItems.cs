@@ -1,10 +1,7 @@
 #if UNITY_EDITOR
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 using static VFolders.Libs.VUtils;
-using static VFolders.Libs.VGUI;
 
 
 namespace VFolders

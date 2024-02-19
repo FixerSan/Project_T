@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +12,7 @@ public class UIScene_Stage : UIScene
 
     public override bool Init()
     {
-        if(!base.Init()) return false;
+        if (!base.Init()) return false;
         BindButton(typeof(Buttons));
         BindSlider(typeof(Sliders));
         BindText(typeof(Texts));

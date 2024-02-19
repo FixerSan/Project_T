@@ -1,7 +1,5 @@
 using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIPopup_SelectLevelUpReward : UIPopup
@@ -10,7 +8,7 @@ public class UIPopup_SelectLevelUpReward : UIPopup
 
     public override bool Init()
     {
-        if(!base.Init()) return false;
+        if (!base.Init()) return false;
         slots = Util.FindChild<Transform>(gameObject, "Trans_Slot").GetComponentsInChildren<UISlot_LevelUpReward>();
         BindImage(typeof(Images));
         BindRect(typeof(Rects));
@@ -52,7 +50,7 @@ public class UIPopup_SelectLevelUpReward : UIPopup
         endSequence.Join(slots[0].rect.DOAnchorPosY(GetRect((int)Rects.Trans_EndTweeningPos_SlotOne).anchoredPosition.y, 1f));
         endSequence.Join(slots[1].rect.DOAnchorPosY(GetRect((int)Rects.Trans_EndTweeningPos_SlotTwo).anchoredPosition.y, 1f));
         endSequence.Join(slots[2].rect.DOAnchorPosY(GetRect((int)Rects.Trans_EndTweeningPos_SlotThree).anchoredPosition.y, 1f));
-        endSequence.AppendCallback(() => 
+        endSequence.AppendCallback(() =>
         {
             _callback?.Invoke();
             endSequence.Kill();
@@ -61,9 +59,9 @@ public class UIPopup_SelectLevelUpReward : UIPopup
 
     public override void ClosePopupUP(Action _callback)
     {
-        EndTweening(() => 
+        EndTweening(() =>
         {
-           base.ClosePopupUP(_callback);
+            base.ClosePopupUP(_callback);
         });
     }
 

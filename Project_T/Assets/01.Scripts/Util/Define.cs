@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Define 
+public class Define
 {
     public enum Direction
     {
@@ -56,7 +52,7 @@ public class Define
 
     public enum UIType
     {
-        UIScene_Test, UIPopup_SelectLevelUpReward
+        UIScene_Test, UIPopup_SelectLevelUpReward, UIPopup_SelectStage
     }
 
     public enum UISlot
@@ -66,8 +62,10 @@ public class Define
 
     public enum Scene
     {
-        Login, Main, Stage, Test
+        Login, Main, Test, Stage_One
     }
+
+
 
     public enum SoundType
     {

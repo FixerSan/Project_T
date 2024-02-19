@@ -1,19 +1,14 @@
 #if UNITY_EDITOR
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using UnityEditor.ShortcutManagement;
-using System.Reflection;
 using System.Linq;
-using UnityEngine.UIElements;
-using UnityEngine.SceneManagement;
+using UnityEditor;
 using UnityEditor.SceneManagement;
-using UnityEditor.Experimental.SceneManagement;
-using Type = System.Type;
-using static VHierarchy.VHierarchyData;
-using static VHierarchy.Libs.VUtils;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using static VHierarchy.Libs.VGUI;
+using static VHierarchy.Libs.VUtils;
+using static VHierarchy.VHierarchyData;
+using Type = System.Type;
 
 
 namespace VHierarchy

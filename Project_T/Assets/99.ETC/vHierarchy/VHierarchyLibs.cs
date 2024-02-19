@@ -1,16 +1,12 @@
 
 #if UNITY_EDITOR
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Reflection;
 using System.Linq;
-using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Experimental.Rendering;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using UnityEditor;
+using UnityEngine;
 using Type = System.Type;
 
 

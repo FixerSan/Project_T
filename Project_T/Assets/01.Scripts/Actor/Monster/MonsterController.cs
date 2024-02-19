@@ -1,9 +1,7 @@
-using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class MonsterController : Actor
 {
@@ -35,7 +33,7 @@ public class MonsterController : Actor
         rb = gameObject.GetOrAddComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         anim = Util.FindChild<Animator>(gameObject, "Sprite", true);
-        sr = Util.FindChild<SpriteRenderer>(gameObject, _recursive:true);
+        sr = Util.FindChild<SpriteRenderer>(gameObject, _recursive: true);
 
         animationHashs.Clear();
         animationHashs.Add(Define.MonsterState.Idle, Animator.StringToHash("0_idle"));
@@ -85,7 +83,7 @@ public class MonsterController : Actor
         if (monster.CheckDie())
             return;
         CheckChangeStateInIspector();
-        if(CheckPlayerDistance()) return;
+        if (CheckPlayerDistance()) return;
         fsm.Update();
     }
 
@@ -99,7 +97,7 @@ public class MonsterController : Actor
 
     public override void Hit(float _damage, Vector3 _knockBackDir, float _knockBackForce = 0f)
     {
-        GetDamage(_damage, _callback:() => { KnockBack(_knockBackDir, _knockBackForce); });
+        GetDamage(_damage, _callback: () => { KnockBack(_knockBackDir, _knockBackForce); });
     }
 
     public override void GetDamage(float _damage, Action _callback = null)
@@ -115,7 +113,7 @@ public class MonsterController : Actor
         if (_knockBackForce == 0f) return;
         monster.Stop();
         isKnockBack = true;
-        if(routines.ContainsKey(nameof(KnockBackRoutine)))
+        if (routines.ContainsKey(nameof(KnockBackRoutine)))
         {
             StopCoroutine(routines[nameof(KnockBackRoutine)]);
             routines.Remove(nameof(KnockBackRoutine));

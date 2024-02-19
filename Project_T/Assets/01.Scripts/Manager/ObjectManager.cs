@@ -1,7 +1,5 @@
 using Monsters;
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ObjectManager
@@ -9,21 +7,21 @@ public class ObjectManager
     public PlayerController PlayerController { get { return playerController; } }
     private PlayerController playerController;
 
-    public Vector3 PlayerMovePos 
+    public Vector3 PlayerMovePos
     {
         get
         {
-            if(playerMovePos == null)
+            if (playerMovePos == null)
                 CreatePlayerMovePos();
-            return playerMovePos.transform.position; 
+            return playerMovePos.transform.position;
         }
     }
     private PlayerMovePos playerMovePos;
 
     private PlayerAttackController playerAttackController;
-    public PlayerAttackController PlayerAttackController 
+    public PlayerAttackController PlayerAttackController
     {
-        get 
+        get
         {
             if (playerAttackController == null)
                 CreatePlayerAttackController();
@@ -53,10 +51,10 @@ public class ObjectManager
     {
         get
         {
-            if(monsterTrans == null)
+            if (monsterTrans == null)
             {
                 GameObject go = GameObject.Find("@MonsterTrans");
-                if(go == null)
+                if (go == null)
                     go = new GameObject("@MonsterTrans");
                 monsterTrans = go.transform;
             }
@@ -70,9 +68,9 @@ public class ObjectManager
     public List<BoomController> booms = new List<BoomController>();
     public List<MagnetController> magnets = new List<MagnetController>();
 
-    public LobbyCharacterController LobbyCharacterController 
+    public LobbyCharacterController LobbyCharacterController
     {
-        get 
+        get
         {
             if (lobbyCharacterController == null)
                 SpawnLobbyCharacterController();
@@ -115,7 +113,7 @@ public class ObjectManager
 
     public MonsterController SpawnMonster(int _monsterIndex, Vector3 _monsterPos)
     {
-        MonsterController controller = Managers.Resource.Instantiate($"Monster_{_monsterIndex}", _pooling:true).GetOrAddComponent<MonsterController>();
+        MonsterController controller = Managers.Resource.Instantiate($"Monster_{_monsterIndex}", _pooling: true).GetOrAddComponent<MonsterController>();
         BaseMonster monster = null;
         Dictionary<Define.MonsterState, State<MonsterController>> states = new Dictionary<Define.MonsterState, State<MonsterController>>();
 
@@ -145,7 +143,7 @@ public class ObjectManager
         }
         controller.SetPosition(_monsterPos);
         controller.transform.SetParent(MonsterTrans);
-        controller.Init(monster, states,new Status());
+        controller.Init(monster, states, new Status());
         controller.monster.attackTarget = playerController;
         monsters.Add(controller);
 
@@ -178,7 +176,7 @@ public class ObjectManager
     public PlayerMovePos CreatePlayerMovePos()
     {
         GameObject go = GameObject.Find("PlayerMovePos");
-        if(go == null)
+        if (go == null)
             go = Managers.Resource.Instantiate("PlayerMovePos");
         playerMovePos = go.GetOrAddComponent<PlayerMovePos>();
         return playerMovePos;
@@ -247,5 +245,11 @@ public class ObjectManager
         lobbyCharacterController.transform.SetParent(null);
         lobbyCharacterController.Init();
         return lobbyCharacterController;
+    }
+
+    public void ClearLobbyCharacterController(LobbyCharacterController _controller)
+    {
+        Managers.Resource.Destroy(_controller.gameObject);
+        lobbyCharacterController = null;
     }
 }

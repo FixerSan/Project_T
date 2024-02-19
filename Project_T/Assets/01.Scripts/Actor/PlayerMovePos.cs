@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovePos : MonoBehaviour
@@ -16,13 +14,13 @@ public class PlayerMovePos : MonoBehaviour
 
     public void Update()
     {
-        if(Managers.Input.joystickInputValue == Vector2.zero)
+        if (Managers.Input.joystickInputValue == Vector2.zero)
         {
             spriteRenderer.enabled = false;
             return;
         }
 
-        if(!spriteRenderer.enabled)
+        if (!spriteRenderer.enabled)
             spriteRenderer.enabled = true;
 
         dir.x = Managers.Input.joystickInputValue.x;

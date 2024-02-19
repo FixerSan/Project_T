@@ -1,7 +1,6 @@
- using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using JetBrains.Annotations;
 
 public class PlayerController : Actor
 {
@@ -37,7 +36,7 @@ public class PlayerController : Actor
         animationHashs.Add(Define.PlayerState.Follow, Animator.StringToHash("1_Run"));
         animationHashs.Add(Define.PlayerState.Move, Animator.StringToHash("1_Run"));
         animationHashs.Add(Define.PlayerState.Attack, Animator.StringToHash("2_Attack_Normal"));
-        animationHashs.Add(Define.PlayerState.Die, Animator.StringToHash("4_Death")); 
+        animationHashs.Add(Define.PlayerState.Die, Animator.StringToHash("4_Death"));
 
         anim = Util.FindChild<Animator>(gameObject, "Sprite", true);
 

@@ -1,8 +1,5 @@
-using DG.Tweening;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -13,9 +10,9 @@ public class GameManager : Singleton<GameManager>
     //게임 시작 되었을 때
     public void GameStart()
     {
-        Managers.Resource.LoadAllAsync<UnityEngine.Object>("Preload",_callback:(name,current,end) => { Debug.Log($"{name}이 로드됨 {current} / {end}"); }, _completeCallback: () =>                  //프리로드 리소스 로드
+        Managers.Resource.LoadAllAsync<UnityEngine.Object>("Preload", _completeCallback: () =>                  //프리로드 리소스 로드
         {
-            Managers.Data.LoadPreData(() => 
+            Managers.Data.LoadPreData(() =>
             {
                 gameSettings = Managers.Resource.Load<GameObject>("Datas").GetOrAddComponent<Datas>().game;      //게임 세팅 설정
                 if (gameSettings.isDebuging)                                                            //디버깅 중일 때
@@ -25,7 +22,7 @@ public class GameManager : Singleton<GameManager>
                     return;
                 }
                 //디버깅 중이 아닐 때
-                Debug.Log("n");            
+                Debug.Log("n");
             });
         });
     }
@@ -43,14 +40,23 @@ public class GameManager : Singleton<GameManager>
 
 public class MainSystem
 {
+    public StageData stageData;
+
     public void OpenStageList()
     {
-        Managers.Object.LobbyCharacterController.MoveToStage(() => 
+        Managers.Object.LobbyCharacterController.MoveToStage(() =>
         {
-            Managers.Scene.LoadScene(Define.Scene.Test);
+            stageData = Managers.Data.GetStageData(1);
+            Managers.UI.ShowPopupUI<UIPopup_SelectStage>();
         });
     }
+
+    public void StartStage()
+    {
+        if (stageData.index == 1) Managers.Scene.LoadScene(Define.Scene.Stage_One);
+    }
 }
+
 
 public class StageSystem
 {
@@ -74,7 +80,7 @@ public class StageSystem
     }
 
     public void Init()
-    {   
+    {
         isStarted = true;
         time = 0;
         currentStagePattern = 1;
@@ -87,14 +93,14 @@ public class StageSystem
     {
         int currentAttackLevel = 1;
         //있는 무기 인지 체크
-        if(attacks.ContainsKey(_attackType))
+        if (attacks.ContainsKey(_attackType))
         {
             //있는 무기이면 현재 무기삭제
             currentAttackLevel = attacks[_attackType].level + 1;
             Managers.Resource.Destroy(attacks[_attackType].gameObject);
             attacks.Remove(_attackType);
         }
-       //무기 추가
+        //무기 추가
         Managers.Object.PlayerAttackController.AddAttack(_attackType, currentAttackLevel, (_attack) => { attacks.Add(_attackType, _attack); });
     }
 
@@ -122,7 +128,7 @@ public class StageSystem
         int[] skillIndexes = GetRandomIndex();
         bool isSame = CheckSame(skillIndexes);
 
-        while(isSame)
+        while (isSame)
         {
             skillIndexes = GetRandomIndex();
             isSame = CheckSame(skillIndexes);
@@ -162,7 +168,7 @@ public class StageSystem
     public void SelectLevelUpReward(int _selectAttackIndex)
     {
         SkillData skill = Managers.Data.GetAttackData(_selectAttackIndex);
-        Managers.UI.activePopups[Define.UIType.UIPopup_SelectLevelUpReward].ClosePopupUP(() => 
+        Managers.UI.activePopups[Define.UIType.UIPopup_SelectLevelUpReward].ClosePopupUP(() =>
         {
             Time.timeScale = 1;
             Managers.Game.stage.GetAttack(skill.attackType);
@@ -203,7 +209,7 @@ public class StageSystem
         time += Time.deltaTime;
         if (currentStagePattern == 1)
         {
-            if(time >= 120f)
+            if (time >= 120f)
             {
                 Managers.Scene.GetActiveScene<TestScene>().NextPattern();
                 currentStagePattern++;

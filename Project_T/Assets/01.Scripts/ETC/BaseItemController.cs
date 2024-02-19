@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseItemController : MonoBehaviour
@@ -46,12 +45,12 @@ public abstract class BaseItemController : MonoBehaviour
     public IEnumerator GetTweeningRoutine(Transform _collision)
     {
         yield return new WaitForSeconds(getTweeningDelay);
-        while(true)
+        while (true)
         {
             yield return null;
             if (rb.velocity.magnitude >= maxSpeed) continue;
             dir = (_collision.transform.position - transform.position).normalized;
-            rb.AddForce(dir * tweeningForce , ForceMode2D.Impulse);
+            rb.AddForce(dir * tweeningForce, ForceMode2D.Impulse);
         }
     }
 }

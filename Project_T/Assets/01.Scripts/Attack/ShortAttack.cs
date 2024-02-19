@@ -64,7 +64,7 @@ public class ShortAttack : BaseAttack
     {
         if (actors.ContainsKey(_actor.GetInstanceID())) return;
         actors.Add(_actor.GetInstanceID(), _actor);
-        Managers.Battle.AttackCalculation(player, _actor, _damage:10, _knockBackForce: knockBackForce);
+        Managers.Battle.AttackCalculation(player, _actor, _damage: 10, _knockBackForce: knockBackForce);
     }
 
 

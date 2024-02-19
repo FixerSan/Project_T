@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class Player
 {
@@ -30,7 +30,7 @@ public class Player
 
     public bool CheckStop()
     {
-        if(Managers.Input.joystickInputValue == Vector2.zero)
+        if (Managers.Input.joystickInputValue == Vector2.zero)
         {
             controller.ChangeState(Define.PlayerState.Idle);
             Stop();

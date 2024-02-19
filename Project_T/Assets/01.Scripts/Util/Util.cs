@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
-using Transform = UnityEngine.Transform;
 using Object = UnityEngine.Object;
+using Transform = UnityEngine.Transform;
 
 public static class Util
 {
@@ -13,7 +11,7 @@ public static class Util
         T component = _go.GetComponent<T>();
         if (component == null)
             component = _go.AddComponent<T>();
-            
+
         return component;
     }
     public static T GetOrAddComponent<T>(Transform _trans) where T : UnityEngine.Component
@@ -28,12 +26,12 @@ public static class Util
     public static T FindChild<T>(GameObject _go, string _name = null, bool _recursive = false) where T : Object
     {
         if (_go == null) return null;
-        if(!_recursive)
+        if (!_recursive)
         {
             for (int i = 0; i < _go.transform.childCount; i++)
             {
                 Transform transform = _go.transform.GetChild(i);
-                if(string.IsNullOrEmpty(_name) || transform.name == _name)
+                if (string.IsNullOrEmpty(_name) || transform.name == _name)
                 {
                     T component = transform.GetComponent<T>();
                     if (component != null)
@@ -46,7 +44,7 @@ public static class Util
         {
             foreach (T component in _go.GetComponentsInChildren<T>())
             {
-                if(string.IsNullOrEmpty(_name) || component.name == _name)
+                if (string.IsNullOrEmpty(_name) || component.name == _name)
                 {
                     return component;
                 }
@@ -71,7 +69,7 @@ public static class Util
 
     public static void FadeOutSpriteRenderer(SpriteRenderer _spriteRenderer, float _fadeOutTime)
     {
-        Managers.Routine.StartCoroutine(FadeOutSpriteRendererRoutine(_spriteRenderer,_fadeOutTime));
+        Managers.Routine.StartCoroutine(FadeOutSpriteRendererRoutine(_spriteRenderer, _fadeOutTime));
     }
 
     private static IEnumerator FadeOutSpriteRendererRoutine(SpriteRenderer _spriteRenderer, float _fadeOutTime)

@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Pool
@@ -16,7 +14,7 @@ public class Pool
         prefab = _prefab;
         poolName = _poolName;
         poolObjectQueue = new Queue<GameObject>();
-        Init(); 
+        Init();
     }
 
     // 게임오브젝트 서치 및 위치 선언
@@ -47,7 +45,7 @@ public class Pool
             poolObject.name = prefab.name;
         }
 
-        poolObject.SetActive(true); 
+        poolObject.SetActive(true);
         return poolObject;
     }
 
@@ -55,8 +53,8 @@ public class Pool
     public void Push(GameObject _poolObject)
     {
         _poolObject.transform.SetParent(transform_Pool);
-        _poolObject.SetActive(false); 
-        poolObjectQueue.Enqueue(_poolObject); 
+        _poolObject.SetActive(false);
+        poolObjectQueue.Enqueue(_poolObject);
     }
 
     // 풀 초기화
@@ -66,7 +64,7 @@ public class Pool
     }
 }
 
-public class PoolManager 
+public class PoolManager
 {
     public Dictionary<string, Pool> poolDictionary = new Dictionary<string, Pool>();    // 풀 딕셔너리
 
@@ -77,7 +75,7 @@ public class PoolManager
         {
             poolDictionary[item.Key].Clear();
         }
-        poolDictionary.Clear(); 
+        poolDictionary.Clear();
     }
 
     // 게임 오브젝트를 풀에서 가져옴
@@ -86,7 +84,7 @@ public class PoolManager
         if (!poolDictionary.ContainsKey(_poolingObject.name))
             CreatePool(_poolingObject);
 
-        return poolDictionary[_poolingObject.name].Get(); 
+        return poolDictionary[_poolingObject.name].Get();
     }
 
     // 게임 오브젝트 푸쉬
@@ -113,8 +111,8 @@ public class PoolManager
         string key = _prefab.name;
         if (poolDictionary.ContainsKey(key))
             return;
-        Pool pool = new Pool(_prefab, $"{key} Pool"); 
-        poolDictionary.Add(key, pool); 
+        Pool pool = new Pool(_prefab, $"{key} Pool");
+        poolDictionary.Add(key, pool);
         _callback?.Invoke();
     }
 
@@ -123,8 +121,8 @@ public class PoolManager
     {
         if (poolDictionary.ContainsKey(_key))
         {
-            poolDictionary[_key].Clear(); 
-            poolDictionary.Remove(_key); 
+            poolDictionary[_key].Clear();
+            poolDictionary.Remove(_key);
         }
     }
 

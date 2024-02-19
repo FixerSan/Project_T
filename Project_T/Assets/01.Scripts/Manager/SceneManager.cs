@@ -30,17 +30,16 @@ public class SceneManager
             if (isLoading) return;
             isLoading = true;
             loadCallback = _loadCallback;
-            string sceneName = _scene.ToString();
             Managers.Pool.Clear();
             Managers.UI.CloseAllPopupUI();
 
             RemoveScene(currentScene, () =>
             {
                 currentScene = _scene;
-                AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync($"Scene_{sceneName}");
+                AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync($"Scene_{_scene}");
                 async.completed += (_) =>
                 {
-                    AddScene(sceneName, () => { loadCallback?.Invoke(); });
+                    AddScene(_scene, () => { loadCallback?.Invoke(); });
                     isLoading = false;
                 };
             });
@@ -52,17 +51,16 @@ public class SceneManager
             if (isLoading) return;
             isLoading = true;
             loadCallback = _loadCallback;
-            string sceneName = _scene.ToString();
+
             Managers.Pool.Clear();
             Managers.UI.CloseAllPopupUI();
-
             RemoveScene(currentScene, () =>
             {
                 currentScene = _scene;
-                AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync($"Scene_{sceneName}");
+                AsyncOperation async = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync($"Scene_{_scene}");
                 async.completed += (_) =>
                 {
-                    AddScene(sceneName, () =>
+                    AddScene(_scene, () =>
                     {
                         isLoading = false; loadCallback?.Invoke();
                         Managers.Screen.FadeOut(0.25f);
@@ -78,6 +76,10 @@ public class SceneManager
         switch (_scene)
         {
             case Define.Scene.Test:
+                bs = sceneTrans.GetComponent<TestScene>();
+                break;
+            
+            case Define.Scene.Stage_One:
                 bs = sceneTrans.GetComponent<TestScene>();
                 break;
 
@@ -99,18 +101,21 @@ public class SceneManager
     }
 
     // ¾À Ãß°¡
-    public void AddScene(string _sceneName, Action _addSceneCallback)
+    public void AddScene(Define.Scene _scene, Action _addSceneCallback)
     {
         BaseScene bs = null;
-        Define.Scene addScene = Util.ParseEnum<Define.Scene>(_sceneName);
         //Managers.Data.LoadSceneData(addScene);
-        switch (addScene)
+        switch (_scene)
         {
             //case Define.Scene.Stage:
             //    bs = SceneTrans.gameObject.AddComponent<StageScene>();
             //    break;
 
             case Define.Scene.Test:
+                bs = SceneTrans.gameObject.AddComponent<TestScene>();
+                break;
+
+            case Define.Scene.Stage_One:
                 bs = SceneTrans.gameObject.AddComponent<TestScene>();
                 break;
 

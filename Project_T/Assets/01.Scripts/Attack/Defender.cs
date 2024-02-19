@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Defender : BaseAttack
@@ -15,7 +14,7 @@ public class Defender : BaseAttack
     private Vector3 tempVecter = Vector3.zero;
     private Vector3 firstSpriteScale;
     private SpriteRenderer[] srs;
-    
+
     public override void Init(PlayerController _player)
     {
         player = _player;
@@ -83,6 +82,6 @@ public class Defender : BaseAttack
     }
     public void Attack(Actor _actor)
     {
-        Managers.Battle.AttackCalculation(player, _actor,_damage:1, _knockBackForce: knockBackForce);
+        Managers.Battle.AttackCalculation(player, _actor, _damage: 1, _knockBackForce: knockBackForce);
     }
 }

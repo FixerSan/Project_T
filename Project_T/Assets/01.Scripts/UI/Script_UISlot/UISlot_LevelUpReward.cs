@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UISlot_LevelUpReward : UIBase
@@ -36,7 +34,7 @@ public class UISlot_LevelUpReward : UIBase
                 nowAttackLevel = attack.Value.level;
         }
 
-        switch(nowAttackLevel)
+        switch (nowAttackLevel)
         {
             case 0:
                 Managers.Resource.Load<Sprite>("EnableStar", (_sprite) => { GetImage((int)Images.Image_StarOne).sprite = _sprite; });

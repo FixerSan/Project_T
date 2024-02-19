@@ -47,3 +47,4 @@ MonoBehaviour:
   game: {fileID: 11400000, guid: efd2eec9d71d223479b7067f1b1b4ccb, type: 2}
   level: {fileID: 11400000, guid: f80b645647ded564f814eb1e0a0b4b46, type: 2}
   skill: {fileID: 11400000, guid: 40d5327e96f9a3847a3e1d178ecdb7d2, type: 2}
+  stage: {fileID: 11400000, guid: 9f29b3dbf78d9a349a61fb8407d144a3, type: 2}

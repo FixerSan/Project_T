@@ -1,13 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager 
+public class DataManager
 {
     public Dictionary<int, UserData> userDatas = new Dictionary<int, UserData>();
     public Dictionary<int, StageLevelData> stageLevelDatas = new Dictionary<int, StageLevelData>();
     public Dictionary<int, SkillData> attackDatas = new Dictionary<int, SkillData>();
+    public Dictionary<int, StageData> stageDatas = new Dictionary<int, StageData>();
 
     public UserData GetUserData(int _index)
     {
@@ -25,12 +25,19 @@ public class DataManager
         if (attackDatas.TryGetValue(_index, out SkillData _data)) return _data;
         return null;
     }
+    
+    public StageData GetStageData(int _index)
+    {
+        if (stageDatas.TryGetValue(_index, out StageData _data)) return _data;
+        return null;
+    }
 
     public void LoadPreData(Action _callback)
     {
         //LoadUserData();
         LoadAttackData();
         LoadStageLevelData();
+        LoadStageData();
         _callback?.Invoke();
     }
 
@@ -49,6 +56,16 @@ public class DataManager
             Datas datas = _.GetComponent<Datas>();
             for (int i = 0; i < datas.level.datas.Count; i++)
                 stageLevelDatas.Add(datas.level.datas[i].level, datas.level.datas[i]);
+        });
+    }
+
+    public void LoadStageData()
+    {
+        Managers.Resource.Load<GameObject>("Datas", (_) =>
+        {
+            Datas datas = _.GetComponent<Datas>();
+            for (int i = 0; i < datas.stage.datas.Length; i++)
+                stageDatas.Add(datas.stage.datas[i].index, datas.stage.datas[i]);
         });
     }
 
@@ -89,4 +106,14 @@ public class SkillData
     public string name;
     public string description;
     public Define.Attacks attackType;
+}
+
+
+
+[System.Serializable]
+public class StageData
+{
+    public int index;
+    public string stageTitle;
+    public string stageLevel;
 }

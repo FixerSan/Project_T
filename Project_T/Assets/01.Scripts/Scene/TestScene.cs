@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class TestScene : BaseScene
 {
@@ -29,7 +25,7 @@ public class TestScene : BaseScene
 
     private void SpawnMonster()
     {
-        if(nowPattern == 1)
+        if (nowPattern == 1)
         {
             pos.x = UnityEngine.Random.Range(-10f, 10f);
             pos.y = UnityEngine.Random.Range(-10f, 10f);
@@ -46,7 +42,7 @@ public class TestScene : BaseScene
             if (pos == Vector3.zero) return;
             pos = pos.normalized;
             pos *= 7.5f;
-            tempInt = UnityEngine.Random.Range(0,2);
+            tempInt = UnityEngine.Random.Range(0, 2);
             Managers.Object.SpawnMonster(1, Managers.Object.PlayerController.transform.position + pos);
         }
 

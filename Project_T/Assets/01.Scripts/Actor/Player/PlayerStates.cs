@@ -1,6 +1,3 @@
-using Unity.VisualScripting;
-using UnityEngine.Rendering.Universal;
-
 namespace PlayerStates
 {
     public class Idle : State<PlayerController>

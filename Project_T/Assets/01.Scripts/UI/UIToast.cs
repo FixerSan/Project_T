@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 
 public class UIToast : UIBase
 {
@@ -17,7 +15,7 @@ public class UIToast : UIBase
 
     public void OnEnable()
     {
-        
+
     }
 
     private void Awake()
@@ -43,8 +41,8 @@ public class UIToast : UIBase
         Refresh();
         transform.localScale = Vector3.one;
         GetText((int)Texts.Text_Description).text = _description;
-        GetText((int)Texts.Text_Description).rectTransform.DOAnchorPosY(500f,3);
-        GetText((int)Texts.Text_Description).DOFade(0, 3).onComplete += () => 
+        GetText((int)Texts.Text_Description).rectTransform.DOAnchorPosY(500f, 3);
+        GetText((int)Texts.Text_Description).DOFade(0, 3).onComplete += () =>
         {
             Managers.UI.CloseToastUI();
         };

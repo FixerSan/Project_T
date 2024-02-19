@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using static Define;
 
-public class EventManager 
+public class EventManager
 {
     // 이벤트 액션 변수 선언
     public Action<VoidEventType> OnVoidEvent;
@@ -13,10 +11,10 @@ public class EventManager
     public Dictionary<VoidEventType, Action> voidEvents;
     public Action updateEvent;
 
-    public EventManager() 
+    public EventManager()
     {
         voidEvents = new Dictionary<VoidEventType, Action>();
-    }   
+    }
 
     public void AddVoidEvent(VoidEventType _type, Action _eventAction)
     {
@@ -43,7 +41,7 @@ public class EventManager
         if (voidEvents.TryGetValue(_type, out Action eventAction))
         {
             eventAction -= _eventAction;
-            if(eventAction.Target == null)
+            if (eventAction.Target == null)
                 voidEvents.Remove(_type);
         }
     }

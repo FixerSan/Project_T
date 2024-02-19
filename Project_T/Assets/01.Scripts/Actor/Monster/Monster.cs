@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -99,7 +98,7 @@ public class Monster
     public virtual bool CheckAttack()
     {
         if (attackTarget == null) return false;
-        if(Vector2.Distance(controller.transform.position, attackTarget.transform.position) < data.attackTargetRange)
+        if (Vector2.Distance(controller.transform.position, attackTarget.transform.position) < data.attackTargetRange)
         {
             controller.ChangeState(Define.MonsterState.Attack);
             return true;
@@ -131,7 +130,7 @@ public class Monster
         {
             controller.ChangeState(Define.MonsterState.Die);
             return true;
-        }    
+        }
 
         return false;
     }

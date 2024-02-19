@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 
@@ -53,13 +52,12 @@ public abstract class UIBase : MonoBehaviour
     protected void BindText(Type _type) { Bind<TMP_Text>(_type); }
     protected void BindButton(Type _type) { Bind<Button>(_type); }
     protected void BindToggle(Type _type) { Bind<Toggle>(_type); }
-    protected void BindSlider(Type _type) { Bind<Slider>(_type); } 
+    protected void BindSlider(Type _type) { Bind<Slider>(_type); }
     protected void BindInputField(Type _type) { Bind<TMP_InputField>(_type); }
 
     protected T Get<T>(int _index) where T : Object
     {
-        Object[] objects = null;
-        if (!objectDictionary.TryGetValue(typeof(T), out objects))
+        if (!objectDictionary.TryGetValue(typeof(T), out Object[] objects))
             return null;
 
         return objects[_index] as T;
@@ -78,7 +76,7 @@ public abstract class UIBase : MonoBehaviour
     {
         UIEventHandler eventHandler = _go.GetOrAddComponent<UIEventHandler>();
 
-        switch(_type)
+        switch (_type)
         {
             case Define.UIEventType.Click:
                 eventHandler.OnClickHandler -= _callback;

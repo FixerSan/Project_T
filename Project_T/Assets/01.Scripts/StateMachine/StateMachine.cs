@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class StateMachine<T> where T : class
 {
     public T entity;
@@ -20,7 +16,7 @@ public class StateMachine<T> where T : class
     public void ChangeState(State<T> _changeState)
     {
         isChange = true;
-        if(currentState != null)
+        if (currentState != null)
             currentState.Exit(entity);
         currentState = _changeState;
         currentState.Enter(entity);
