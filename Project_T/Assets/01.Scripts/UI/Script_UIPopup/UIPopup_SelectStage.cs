@@ -13,6 +13,8 @@ public class UIPopup_SelectStage : UIPopup
 
         BindEvent(GetButton((int)Buttons.Button_Start).gameObject, OnClick_Start);
         BindEvent(GetButton((int)Buttons.Button_Close).gameObject, () => { ClosePopupUP(); });
+        BindEvent(GetButton((int)Buttons.Button_RightArrow).gameObject, Managers.Game.main.SetNextStage);
+        BindEvent(GetButton((int)Buttons.Button_LeftArrow).gameObject, Managers.Game.main.SetBeforeStage);
 
         RedrawUI();
         StartTweening(null);

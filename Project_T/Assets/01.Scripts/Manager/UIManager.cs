@@ -51,9 +51,6 @@ public class UIManager
         }
     }
 
-
-
-
     // 이벤트 시스템 설정
     public void SetEventSystem()
     {

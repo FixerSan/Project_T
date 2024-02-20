@@ -51,6 +51,16 @@ public class MainSystem
         });
     }
 
+    public void SetNextStage()
+    {
+
+    }
+
+    public void SetBeforeStage()
+    {
+
+    }
+
     public void StartStage()
     {
         if (stageData.index == 1) Managers.Scene.LoadScene(Define.Scene.Stage_One);
