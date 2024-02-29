@@ -53,6 +53,10 @@ MonoBehaviour:
     m_Address: Devil House.sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: ec17191a3f79a5f4cae2b7f4496c5946
+    m_Address: Shuriken.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3909b773da7e7b34fa5db52770212107, type: 2}
   m_SchemaSet:

@@ -33,17 +33,7 @@ public class Defender : BaseAttack
         CheckStartAttack();
     }
 
-    public void CheckStartAttack()
-    {
-        if (isAttacking) return;
-        attackCooltimer -= Time.deltaTime;
-        if (attackCooltimer <= 0)
-        {
-            StartAttack();
-        }
-    }
-
-    public void StartAttack()
+    public override void StartAttack()
     {
         attackCooltimer = attackCooltime;
         for (int i = 0; i < srs.Length; i++)
@@ -80,6 +70,7 @@ public class Defender : BaseAttack
         if (collision.CompareTag("Enemy"))
             Attack(collision.GetComponent<Actor>());
     }
+
     public void Attack(Actor _actor)
     {
         Managers.Battle.AttackCalculation(player, _actor, _damage: 1, _knockBackForce: knockBackForce);

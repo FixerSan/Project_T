@@ -25,3 +25,7 @@ MonoBehaviour:
     name: Test
     description: Test
     attackType: 20
+  - index: 30
+    name: Shuriken
+    description: Shuriken
+    attackType: 30

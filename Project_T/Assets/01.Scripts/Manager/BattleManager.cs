@@ -6,6 +6,8 @@ public class BattleManager
     ////공격 처리
     public void AttackCalculation(Actor _attacker, Actor _hiter, float _damage = -1, float _knockBackForce = 0, Action<float> _damageCallback = null)
     {
+        if (_attacker == null) return;
+        if (_hiter == null) return;
         Vector3 _knockBackDir = (_attacker.transform.position - _hiter.transform.position).normalized * (-1f);
         float currentDamage = _damage;
         if (_damage == -1)

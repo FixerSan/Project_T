@@ -11,4 +11,16 @@ public abstract class BaseAttack : MonoBehaviour
     public float knockBackForce;
 
     public abstract void Init(PlayerController _player);
+
+    public virtual void CheckStartAttack()
+    {
+        if (isAttacking) return;
+        attackCooltimer -= Time.deltaTime;
+        if (attackCooltimer <= 0)
+        {
+            StartAttack();
+        }
+    }
+
+    public abstract void StartAttack();
 }

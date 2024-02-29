@@ -17,18 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 64c11dd34cca1fa468236e04da8dcfa9
   m_SerializeEntries:
-  - m_GUID: 4d8e140416b90fd4e95de9d7a3240094
-    m_Address: Datas.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-  - m_GUID: c85337c6295b91f48a3eb6af26e9f8a8
-    m_Address: UIScene_Main.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-  - m_GUID: 35f8714a66abc3d429b96d9b9bc2113a
-    m_Address: UIPopup_SelectStage.prefab
+  - m_GUID: f5da671555fdbf84d8e4735be19c12a4
+    m_Address: Shuriken_2.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

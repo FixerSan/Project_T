@@ -27,17 +27,7 @@ public class ShortAttack : BaseAttack
         CheckStartAttack();
     }
 
-    public void CheckStartAttack()
-    {
-        if (isAttacking) return;
-        attackCooltimer -= Time.deltaTime;
-        if (attackCooltimer <= 0)
-        {
-            StartAttack();
-        }
-    }
-
-    public void StartAttack()
+    public override void StartAttack()
     {
         attackCooltimer = attackCooltime;
         sr.enabled = true;

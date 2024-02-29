@@ -24,7 +24,7 @@ public class Define
 
     public enum Attacks
     {
-        Hammer, Defender = 10, TestAttack = 20
+        Hammer, Defender = 10, TestAttack = 20 , Shuriken = 30
     }
 
 
