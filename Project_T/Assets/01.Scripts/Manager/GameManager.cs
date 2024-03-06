@@ -41,6 +41,8 @@ public class GameManager : Singleton<GameManager>
 public class MainSystem
 {
     public StageData stageData;
+    public int selectedHeroIndex = 0;
+    public int nowHeroIndex = 0;
 
     public void OpenStageList()
     {
@@ -59,6 +61,20 @@ public class MainSystem
     public void SetBeforeStage()
     {
 
+    }
+
+    public void SelectHero(int _heroIndex)
+    {
+        selectedHeroIndex = _heroIndex;
+        Managers.UI.activePopups[Define.UIType.UIPopup_Heroes].RedrawUI();
+    }
+
+    public void ChangeHero()
+    {
+        Managers.Object.ClearLobbyCharacterController();
+        nowHeroIndex = selectedHeroIndex;
+        Managers.Object.SpawnLobbyCharacterController();
+        Managers.UI.ClosePopupUI(Managers.UI.activePopups[Define.UIType.UIPopup_Heroes]);
     }
 
     public void StartStage()

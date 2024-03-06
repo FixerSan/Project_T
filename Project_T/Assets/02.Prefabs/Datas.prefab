@@ -48,3 +48,4 @@ MonoBehaviour:
   level: {fileID: 11400000, guid: f80b645647ded564f814eb1e0a0b4b46, type: 2}
   skill: {fileID: 11400000, guid: 40d5327e96f9a3847a3e1d178ecdb7d2, type: 2}
   stage: {fileID: 11400000, guid: 9f29b3dbf78d9a349a61fb8407d144a3, type: 2}
+  hero: {fileID: 11400000, guid: a720cbdf8f3d9c943ad2c6e4268415d0, type: 2}

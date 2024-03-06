@@ -52,7 +52,7 @@ public class Define
 
     public enum UIType
     {
-        UIScene_Test, UIPopup_SelectLevelUpReward, UIPopup_SelectStage
+        UIScene_Test, UIPopup_SelectLevelUpReward, UIPopup_SelectStage, UIPopup_Heroes
     }
 
     public enum UISlot
@@ -65,7 +65,10 @@ public class Define
         Login, Main, Test, Stage_One
     }
 
-
+    public enum Hero
+    {
+        Eric, Shinobi
+    }
 
     public enum SoundType
     {

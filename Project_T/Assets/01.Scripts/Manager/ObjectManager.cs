@@ -239,12 +239,18 @@ public class ObjectManager
 
     public LobbyCharacterController SpawnLobbyCharacterController()
     {
-        GameObject go = Managers.Resource.Instantiate(nameof(LobbyCharacterController));
+        GameObject go = Managers.Resource.Instantiate($"{nameof(LobbyCharacterController)}_{Managers.Game.main.nowHeroIndex}");
         lobbyCharacterController = go.GetOrAddComponent<LobbyCharacterController>();
         lobbyCharacterController.transform.position = new Vector3(0, -2.5f, 0);
         lobbyCharacterController.transform.SetParent(null);
         lobbyCharacterController.Init();
         return lobbyCharacterController;
+    }
+
+    public void ClearLobbyCharacterController()
+    {
+        Managers.Resource.Destroy(lobbyCharacterController.gameObject);
+        lobbyCharacterController = null;
     }
 
     public void ClearLobbyCharacterController(LobbyCharacterController _controller)

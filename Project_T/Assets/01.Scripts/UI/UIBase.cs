@@ -12,12 +12,14 @@ public abstract class UIBase : MonoBehaviour
     protected Dictionary<Type, Object[]> objectDictionary = new Dictionary<Type, Object[]>();
     protected bool init = false;
     public bool isDrawed = false;
+    public RectTransform rect;
 
     public virtual bool Init()
     {
         if (init)
             return false;
         //초기화 내용 적을 곳
+        rect = GetComponent<RectTransform>();
         init = true;
         return true;
     }

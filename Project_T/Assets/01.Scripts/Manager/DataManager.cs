@@ -8,6 +8,7 @@ public class DataManager
     public Dictionary<int, StageLevelData> stageLevelDatas = new Dictionary<int, StageLevelData>();
     public Dictionary<int, SkillData> attackDatas = new Dictionary<int, SkillData>();
     public Dictionary<int, StageData> stageDatas = new Dictionary<int, StageData>();
+    public Dictionary<int, HeroData> heroDatas = new Dictionary<int, HeroData>();
 
     public UserData GetUserData(int _index)
     {
@@ -32,12 +33,19 @@ public class DataManager
         return null;
     }
 
+    public HeroData GetHeroData(int _index)
+    {
+        if (heroDatas.TryGetValue(_index, out HeroData _data)) return _data;
+        return null;
+    }
+
     public void LoadPreData(Action _callback)
     {
         //LoadUserData();
         LoadAttackData();
         LoadStageLevelData();
         LoadStageData();
+        LoadHeroData();
         _callback?.Invoke();
     }
 
@@ -78,6 +86,16 @@ public class DataManager
                 attackDatas.Add(datas.skill.datas[i].index, datas.skill.datas[i]);
         });
     }
+
+    public void LoadHeroData()
+    {
+        Managers.Resource.Load<GameObject>("Datas", (_) =>
+        {
+            Datas datas = _.GetComponent<Datas>();
+            for (int i = 0; i < datas.hero.datas.Count; i++)
+                heroDatas.Add(datas.hero.datas[i].index, datas.hero.datas[i]);
+        });
+    }
 }
 
 
@@ -116,4 +134,14 @@ public class StageData
     public int index;
     public string stageTitle;
     public string stageLevel;
+}
+
+[System.Serializable]
+public class HeroData
+{
+    public int index;
+    public float hp;
+    public float speed;
+    public string name;
+    public Define.Attacks attack;
 }

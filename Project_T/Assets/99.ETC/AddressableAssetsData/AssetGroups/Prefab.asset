@@ -58,7 +58,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
   - m_GUID: 625d21d0df5f98d4fac03fd9700d4dc3
-    m_Address: LobbyCharacterController.prefab
+    m_Address: LobbyCharacterController_0.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

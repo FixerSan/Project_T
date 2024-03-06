@@ -3,7 +3,6 @@ using UnityEngine;
 public class UISlot_LevelUpReward : UIBase
 {
     public SkillData data;
-    public RectTransform rect;
     public override bool Init()
     {
         if (!base.Init()) return false;

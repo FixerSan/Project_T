@@ -68,7 +68,6 @@ public class UIPopup_SelectStage : UIPopup
 
     }
 
-
     private enum Images
     {
         Image_StageImage

@@ -6,4 +6,5 @@ public class Datas : MonoBehaviour
     public StageLevelDataProfile level;
     public SkillDataProfile skill;
     public StageDataProfile stage;
+    public HeroDataProfile hero;
 }
