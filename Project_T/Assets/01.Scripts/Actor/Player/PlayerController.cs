@@ -11,6 +11,8 @@ public class PlayerController : Actor
 
     public Dictionary<Define.Attacks, BaseAttack> attacks = new Dictionary<Define.Attacks, BaseAttack>();
 
+    public Define.Attacks startAttack;
+
     public Define.PlayerState currentState;
     public Define.PlayerState changeState;
     public Rigidbody2D rb;
@@ -46,7 +48,7 @@ public class PlayerController : Actor
         status.currentNowHP = 10000;
         status.defaultAttackForce = 100;
 
-        Managers.Game.stage.GetAttack(Define.Attacks.Hammer);
+        Managers.Game.stage.GetAttack(startAttack);
     }
 
     public void Update()

@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: 62b74bec57aede244b8d16e145415d11
   m_SerializeEntries:
   - m_GUID: 17eca2ed53ee8e74aad982c3c09d4d3c
-    m_Address: Player.prefab
+    m_Address: Player_0.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -74,6 +74,16 @@ MonoBehaviour:
     - Preload
   - m_GUID: 2bf206aafaca93544bcdf77893e5db8b
     m_Address: Shuriken.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: c741321b244600d44a1a4d4619576a1d
+    m_Address: Player_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+  - m_GUID: 1746102d7dc2391419b7e9e721b6a9a0
+    m_Address: LobbyCharacterController_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

@@ -95,9 +95,9 @@ public class ObjectManager
     }
     private Transform itemTrans;
 
-    public PlayerController SpawnPlayer(Vector3 _playerPos)
+    public PlayerController SpawnPlayer(int _index,Vector3 _playerPos)
     {
-        playerController = Managers.Resource.Instantiate($"Player").GetOrAddComponent<PlayerController>();
+        playerController = Managers.Resource.Instantiate($"Player_{+_index}").GetOrAddComponent<PlayerController>();
         Player player = new Player(new PlayerData(), playerController);
         Dictionary<Define.PlayerState, State<PlayerController>> states = new Dictionary<Define.PlayerState, State<PlayerController>>();
         states.Add(Define.PlayerState.Idle, new PlayerStates.Idle());
@@ -241,9 +241,10 @@ public class ObjectManager
     {
         GameObject go = Managers.Resource.Instantiate($"{nameof(LobbyCharacterController)}_{Managers.Game.main.nowHeroIndex}");
         lobbyCharacterController = go.GetOrAddComponent<LobbyCharacterController>();
-        lobbyCharacterController.transform.position = new Vector3(0, -2.5f, 0);
+        lobbyCharacterController.transform.position = new Vector3(-3.5f, -2.5f, 0);
         lobbyCharacterController.transform.SetParent(null);
         lobbyCharacterController.Init();
+        lobbyCharacterController.MoveToMain();
         return lobbyCharacterController;
     }
 
