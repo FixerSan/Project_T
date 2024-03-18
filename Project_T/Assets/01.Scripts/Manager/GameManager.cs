@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
 public class MainSystem
 {
     public StageData stageData;
+    public int selectedStageIndex = 1;
     public int selectedHeroIndex = 0;
     public int nowHeroIndex = 0;
 
@@ -48,19 +49,27 @@ public class MainSystem
     {
         Managers.Object.LobbyCharacterController.MoveToStage(() =>
         {
-            stageData = Managers.Data.GetStageData(1);
+            stageData = Managers.Data.GetStageData(selectedStageIndex);
             Managers.UI.ShowPopupUI<UIPopup_SelectStage>();
         });
     }
 
     public void SetNextStage()
     {
-
+        selectedStageIndex++;
+        if (selectedStageIndex > Define.maxStageIndex)
+            selectedStageIndex = Define.minStageIndex;
+        stageData = Managers.Data.GetStageData(selectedStageIndex);
+        Managers.UI.activePopups[Define.UIType.UIPopup_SelectStage].RedrawUI();
     }
 
     public void SetBeforeStage()
     {
-
+        selectedStageIndex--;
+        if (selectedStageIndex < Define.minStageIndex)
+            selectedStageIndex = Define.maxStageIndex;
+        stageData = Managers.Data.GetStageData(selectedStageIndex);
+        Managers.UI.activePopups[Define.UIType.UIPopup_SelectStage].RedrawUI();
     }
 
     public void SelectHero(int _heroIndex)

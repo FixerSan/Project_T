@@ -1,5 +1,7 @@
 public class Define
 {
+    public static int minStageIndex = 1;
+    public static int maxStageIndex = 5;
     public enum Direction
     {
         Left = -1,

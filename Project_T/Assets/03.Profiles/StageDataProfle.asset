@@ -16,3 +16,15 @@ MonoBehaviour:
   - index: 1
     stageTitle: Devil House
     stageLevel: 1 - 1
+  - index: 2
+    stageTitle: Devil House
+    stageLevel: 1 - 2
+  - index: 3
+    stageTitle: Devil House
+    stageLevel: 1 - 3
+  - index: 4
+    stageTitle: Knight Castle
+    stageLevel: 2 - 1
+  - index: 5
+    stageTitle: Knight Castle
+    stageLevel: 2 - 2
